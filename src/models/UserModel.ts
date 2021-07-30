@@ -5,3 +5,9 @@ export interface UserModel {
   email: string,
   isLoggedIn?: boolean
 }
+
+
+export interface UserAttribute {
+  Name: string,
+  Value: string
+}
