@@ -14,17 +14,17 @@ export class NavBar extends React.Component<{
   render() {
     let logInLogOut: any
     if (this.props.user) {
-      logInLogOut = <Link to='/logout'>{this.props.user.userName}</Link>
+      logInLogOut = <Link to='/logout'>{this.props.user.userName} LOGOUT </Link>
     } else {
-      logInLogOut = <Link to='/login'>Log In: </Link>
+      logInLogOut = <Link to='/login'> HOME</Link>
     }
 
 
     return (
       <div className="navbar">
-        <Link to='/'> HOME </Link>
-        <Link to='/mymarkets'> My Markets </Link>
         {logInLogOut}
+        <Link to='/mymarkets'> My Markets </Link>
+
       </div>
     )
   }

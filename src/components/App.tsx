@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 import { UserModel } from '../models/UserModel'
@@ -8,7 +7,11 @@ import { Router, Route, Switch } from 'react-router-dom';
 import history from '../utils/history';
 import { NavBar } from './NavBar';
 import { MyMarkets } from './MyMarkets';
-import { Home } from './Home';
+import React from 'react';
+import { LogOut } from './LogOut';
+
+
+
 
 interface AppState {
   user: UserModel | undefined
@@ -39,11 +42,18 @@ export class App extends React.Component<{}, AppState> {
           <div>
             <NavBar user={this.state.user} />
             <Switch>
-              <Route exact path='/' component={Home} />
+              <Route exact path='/'>
+                <LogIn authService={this.authService} setUser={this.setUser} />
+              </Route>
               <Route exact path='/login'>
                 <LogIn authService={this.authService} setUser={this.setUser}></LogIn>
               </Route>
-              <Route exact path='/mymarkets' component={MyMarkets} />
+              <Route exact path='/mymarkets'>
+                <MyMarkets authService={this.authService} user={this.state.user} />
+              </Route>
+              <Route>
+                <LogOut></LogOut>
+              </Route>
             </Switch>
           </div>
         </Router>
