@@ -1,24 +1,29 @@
 
 import React from 'react';
-import { UserAttribute, UserModel } from '../models/UserModel';
+import { MarketModel, UserAttribute, UserModel } from '../models/UserModel';
 import { AuthService } from '../services/AuthService';
 import { Link } from 'react-router-dom';
+import { ApiService } from '../services/ApiService';
+import { Market } from '../components/Market';
 
 
 interface MyMarketsState {
-  userAttributes: UserAttribute[]
+  userAttributes: UserAttribute[],
+  markets: MarketModel[]
 }
 
 interface MyMarketProps {
   user: UserModel | undefined
   authService: AuthService
+  apiService: ApiService
 }
 
 
 
 export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
   state: MyMarketsState = {
-    userAttributes: []
+    userAttributes: [],
+    markets: []
   }
 
   async componentDidMount() {
@@ -28,6 +33,22 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
         userAttributes: userAttrs
       })
     }
+    const markets = await this.props.apiService.getMarkets();
+    this.setState({
+      markets: markets
+    })
+  }
+
+  private renderMarkets() {
+    const rows: any[] = []
+    for (const market of this.state.markets) {
+      rows.push(
+        <Market marketName={market.marketName} marketLocation={market.marketLocation} marketSeason={market.marketSeason} />
+      )
+    }
+    return <table>
+      <tbody>{rows}</tbody>
+    </table>
   }
 
   private renderUserAttributes() {
@@ -64,6 +85,7 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
     return (
       <div> Users logged in home page
         {profileSpace}
+        {this.renderMarkets()}
       </div>
     )
   }
