@@ -72,7 +72,7 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
     let profileSpace
     if (this.props.user) {
       profileSpace = <div>
-        <h3> User {this.props.user?.userName} </h3>
+        <h2> WELCOME {this.props.user?.userName} !</h2>
         Here are your Attributes:
         {this.renderUserAttributes()}
       </div>
@@ -84,7 +84,8 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
 
     return (
       <div> Users logged in home page
-        {profileSpace}
+        {profileSpace}<br />
+        <h2>MY MARKETS</h2><br />
         {this.renderMarkets()}
       </div>
     )
