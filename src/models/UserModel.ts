@@ -16,5 +16,6 @@ export interface UserAttribute {
 export interface MarketModel {
   marketName: string,
   marketLocation: string,
-  marketSeason: string
+  marketSeason: string,
+  id: number
 }
