@@ -37,18 +37,24 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
     this.setState({
       markets: markets
     })
+
   }
 
   private renderMarkets() {
-    const rows: any[] = []
-    for (const market of this.state.markets) {
-      rows.push(
+    let marketList: any[] = []
+
+    marketList = this.state.markets.map((market) => {
+      return <li >
         <Market marketName={market.marketName} marketLocation={market.marketLocation} marketSeason={market.marketSeason} />
-      )
-    }
-    return <table>
-      <tbody>{rows}</tbody>
-    </table>
+      </li>
+    })
+    return (
+      <div>
+        <ul>
+          {marketList}
+        </ul>
+      </div>
+    )
   }
 
   private renderUserAttributes() {
@@ -60,7 +66,6 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
 
       </tr>)
     }
-
     return <table>
       <tbody>{rows}</tbody>
     </table>
@@ -85,7 +90,6 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
         Please <Link to='/login'>Login</Link>
       </div>
     }
-
 
     return (
       <div> Users logged in home page

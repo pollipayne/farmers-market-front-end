@@ -12,9 +12,9 @@ export class Market extends React.Component<MarketProps> {
   render() {
     return (
       <div>
-        <label>{this.props.marketName}</label>
-        <label>{this.props.marketLocation}</label>
-        <label>{this.props.marketSeason}</label>
+        <p>{this.props.marketName}</p>
+        <p>{this.props.marketLocation}</p>
+        <p>{this.props.marketSeason}</p>
       </div>
     )
   }
