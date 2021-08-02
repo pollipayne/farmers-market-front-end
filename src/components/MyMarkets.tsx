@@ -1,24 +1,29 @@
 
 import React from 'react';
-import { UserAttribute, UserModel } from '../models/UserModel';
+import { MarketModel, UserAttribute, UserModel } from '../models/UserModel';
 import { AuthService } from '../services/AuthService';
 import { Link } from 'react-router-dom';
+import { ApiService } from '../services/ApiService';
+import { Market } from '../components/Market';
 
 
 interface MyMarketsState {
-  userAttributes: UserAttribute[]
+  userAttributes: UserAttribute[],
+  markets: MarketModel[]
 }
 
 interface MyMarketProps {
   user: UserModel | undefined
   authService: AuthService
+  apiService: ApiService
 }
 
 
 
 export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
   state: MyMarketsState = {
-    userAttributes: []
+    userAttributes: [],
+    markets: []
   }
 
   async componentDidMount() {
@@ -28,6 +33,28 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
         userAttributes: userAttrs
       })
     }
+    const markets = await this.props.apiService.getMarkets();
+    this.setState({
+      markets: markets
+    })
+
+  }
+
+  private renderMarkets() {
+    let marketList: any[] = []
+
+    marketList = this.state.markets.map((market) => {
+      return <li >
+        <Market marketName={market.marketName} marketLocation={market.marketLocation} marketSeason={market.marketSeason} />
+      </li>
+    })
+    return (
+      <div>
+        <ul>
+          {marketList}
+        </ul>
+      </div>
+    )
   }
 
   private renderUserAttributes() {
@@ -39,7 +66,6 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
 
       </tr>)
     }
-
     return <table>
       <tbody>{rows}</tbody>
     </table>
@@ -51,9 +77,13 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
     let profileSpace
     if (this.props.user) {
       profileSpace = <div>
-        <h3> User {this.props.user?.userName} </h3>
+        <h2> WELCOME {this.props.user?.userName} !</h2>
         Here are your Attributes:
         {this.renderUserAttributes()}
+        <br />
+        <h2> MY MARKETS</h2>
+        {this.renderMarkets()}
+
       </div>
     } else {
       profileSpace = <div>
@@ -63,7 +93,8 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
 
     return (
       <div> Users logged in home page
-        {profileSpace}
+        {profileSpace}<br />
+
       </div>
     )
   }
