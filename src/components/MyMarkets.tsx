@@ -19,7 +19,6 @@ interface MyMarketProps {
 }
 
 
-
 export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
   state: MyMarketsState = {
     userAttributes: [],
@@ -32,17 +31,16 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
       this.setState({
         userAttributes: userAttrs
       })
+      const markets = await this.props.apiService.getMarkets();
+      this.setState({
+        markets: markets
+      })
     }
-    const markets = await this.props.apiService.getMarkets();
-    this.setState({
-      markets: markets
-    })
-
   }
 
   private renderMarkets() {
     let marketList: any[] = []
-
+    console.log(this.state.markets)
     marketList = this.state.markets.map((market) => {
       return <li >
         <Market marketName={market.marketName} marketLocation={market.marketLocation} marketSeason={market.marketSeason} />

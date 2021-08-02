@@ -1,4 +1,3 @@
-import axios from 'axios';
 import './App.css';
 import { MarketModel, UserModel } from '../models/UserModel'
 import { AuthService } from '../services/AuthService'
@@ -9,9 +8,8 @@ import { NavBar } from './NavBar';
 import { MyMarkets } from './MyMarkets';
 import React from 'react';
 import { LogOut } from './LogOut';
-import { Market } from '../components/Market';
 import { ApiService } from '../services/ApiService';
-import GoogleLogin from 'react-google-login';
+// import GoogleLogin from 'react-google-login';
 
 
 
@@ -41,20 +39,20 @@ export class App extends React.Component<{}, AppState> {
     })
   }
 
-  public async handleLogin(googleData: any) {
-    const res = await fetch("/api/v1/auth/google", {
-      method: "POST",
-      body: JSON.stringify({
-        token: googleData.tokenId
-      }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    const data = await res.json()
-    // store returned user somehow
-    console.log(data)
-  }
+  // public async handleLogin(googleData: any) {
+  //   const res = await fetch("/api/v1/auth/google", {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       token: googleData.tokenId
+  //     }),
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     }
+  //   })
+  //   const data = await res.json()
+  //   // store returned user somehow
+  //   console.log(data)
+  // }
 
   render() {
     return (
@@ -62,13 +60,13 @@ export class App extends React.Component<{}, AppState> {
         <Router history={history}>
           <div>
             <NavBar user={this.state.user} />
-            <GoogleLogin
+            {/* <GoogleLogin
               clientId={String(process.env.REACT_APP_GOOGLE_CLIENT_ID)}
               buttonText="Log in with Google"
               onSuccess={this.handleLogin}
               onFailure={this.handleLogin}
               cookiePolicy={'single_host_origin'}
-            />
+            /> */}
             <Switch>
               <Route exact path='/'>
                 <LogIn authService={this.authService} setUser={this.setUser} />
