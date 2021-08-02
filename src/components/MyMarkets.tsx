@@ -46,6 +46,7 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
         <Market marketName={market.marketName} marketLocation={market.marketLocation} marketSeason={market.marketSeason} />
       </li>
     })
+
     return (
       <div>
         <ul>
@@ -88,6 +89,7 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
         Please <Link to='/login'>Login</Link>
       </div>
     }
+
 
     return (
       <div> Users logged in home page
