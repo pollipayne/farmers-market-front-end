@@ -1,5 +1,11 @@
 
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
+import { ApiService } from '../services/ApiService';
+
+interface MarketFormProps {
+  apiService: ApiService
+  updateMarkets: () => void;
+}
 
 interface NewMarketState {
   marketName: string,
@@ -7,11 +13,9 @@ interface NewMarketState {
   marketSeason: string
 }
 
-interface customEvent {
-  target: HTMLInputElement
-}
 
-export class NewMarketForm extends React.Component<{}, NewMarketState> {
+
+export class NewMarketForm extends React.Component<MarketFormProps, NewMarketState> {
   state: NewMarketState = {
     marketName: '',
     marketLocation: '',
@@ -19,8 +23,24 @@ export class NewMarketForm extends React.Component<{}, NewMarketState> {
   }
 
 
-  private onNameChange(event: customEvent) {
-    this.setState({ marketName: event.target.value })
+  private onNameChange = (event: React.FormEvent<HTMLInputElement>) => {
+    this.setState({ marketName: event.currentTarget.value })
+  }
+
+  private onLocationChange = (event: React.FormEvent<HTMLInputElement>) => {
+    this.setState({ marketLocation: event.currentTarget.value })
+  }
+
+  private onHoursChange = (event: React.FormEvent<HTMLInputElement>) => {
+    this.setState({ marketSeason: event.currentTarget.value })
+  }
+
+  private handleSubmit = async (event: SyntheticEvent) => {
+    event.preventDefault();
+    const result = await this.props.apiService.addNewMarket(this.state)
+    console.log(result)
+    this.props.updateMarkets();
+    this.setState({ marketName: '', marketLocation: '', marketSeason: '' })
   }
 
   render() {
@@ -28,22 +48,17 @@ export class NewMarketForm extends React.Component<{}, NewMarketState> {
       <form>
         <div>
           <h2> Add A New Market </h2>
-          <label> NAME: </label>
-          <input value="market name" onChange={this.onNameChange} /><br />
-          <label> LOCATION: </label>
-          <input value="market location" /><br />
-          <label> HOURS/SEASON </label>
-          <input value="i.e 9AM-3PM Summer" /><br />
-          <input type='checkbox' name="been-there" />
-          <label htmlFor="been-there">Been There! </label> <br />
-          <input type='checkbox' name="want-to" />
-          <label htmlFor="want-to">Want to go!</label> <br />
-          <button type='submit'> SUBMIT </button>
+          <label htmlFor='market-name'> NAME: </label>
+          <input name='market-name' onChange={this.onNameChange} type="text" value={this.state.marketName} /><br />
+          <label htmlFor="market-location"> LOCATION: </label>
+          <input name="market-location" onChange={this.onLocationChange} value={this.state.marketLocation} /><br />
+          <label htmlFor='market-hours'> HOURS/SEASON </label>
+          <input name='market-hours' onChange={this.onHoursChange} value={this.state.marketSeason} /><br />
+          <button onClick={this.handleSubmit} type='submit'> SUBMIT </button>
 
         </div>
       </form>
     )
   }
-
 
 }
