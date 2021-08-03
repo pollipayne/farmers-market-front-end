@@ -1,4 +1,4 @@
-import { UserAttribute, UserModel } from '../models/UserModel';
+import { UserAttribute, UserModel } from '../models/Models';
 
 
 export class AuthService {
@@ -13,6 +13,7 @@ export class AuthService {
       return undefined
     }
   }
+
 
   public async getUserAttributes(user: UserModel): Promise<UserAttribute[]> {
     const result: UserAttribute[] = [];
