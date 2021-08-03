@@ -33,19 +33,23 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
         userAttributes: userAttrs
       })
     }
+    this.updateMarkets();
+  }
+
+  updateMarkets = async () => {
     const markets = await this.props.apiService.getMarkets();
     this.setState({
       markets: markets
     })
-
   }
+
 
   private renderMarkets() {
     let marketList: any[] = []
 
     marketList = this.state.markets.map((market) => {
       return <li >
-        <Market marketName={market.marketName} marketLocation={market.marketLocation} marketSeason={market.marketSeason} />
+        <Market key={market.id} id={market.id} marketName={market.marketName} marketLocation={market.marketLocation} marketSeason={market.marketSeason} apiService={this.props.apiService} updateMarkets={this.updateMarkets} />
       </li>
     })
     return (
@@ -84,7 +88,7 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
         <h2> MY MARKETS</h2>
         {this.renderMarkets()}
         <section>
-          <NewMarketForm></NewMarketForm>
+          <NewMarketForm apiService={this.props.apiService} updateMarkets={this.updateMarkets} ></NewMarketForm>
         </section>
 
 

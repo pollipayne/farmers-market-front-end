@@ -1,5 +1,6 @@
 import { MarketModel } from '../models/Models';
 import axios from 'axios';
+import { Market } from '../components/Market';
 
 
 export class ApiService {
@@ -21,5 +22,11 @@ export class ApiService {
     let postMarket = await axios.post('http://localhost:3001/markets', newMarket)
 
     return postMarket.data;
+  }
+
+  public async deleteMarket(marketId: number) {
+    let deletedMarket = await axios.delete(`http://localhost:3001/markets/${marketId}`)
+
+    return deletedMarket.data;
   }
 };

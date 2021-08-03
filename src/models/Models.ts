@@ -17,7 +17,7 @@ export interface MarketModel {
   marketName: string,
   marketLocation: string,
   marketSeason: string,
-  id: number
+  id?: number
 }
 
 export interface LogInState {
