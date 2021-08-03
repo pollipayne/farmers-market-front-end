@@ -1,6 +1,6 @@
 
 import React, { SyntheticEvent } from 'react';
-import { UserModel } from '../models/UserModel';
+import { UserModel } from '../models/Models';
 import { AuthService } from '../services/AuthService';
 import history from '../utils/history';
 

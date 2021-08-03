@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { UserModel } from '../models/UserModel';
+import { UserModel } from '../models/Models';
 import { Link } from 'react-router-dom';
 
 

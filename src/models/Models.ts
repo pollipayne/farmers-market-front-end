@@ -19,3 +19,10 @@ export interface MarketModel {
   marketSeason: string,
   id: number
 }
+
+export interface LogInState {
+  userName: string,
+  password: string,
+  loginAttempted: boolean,
+  isLoggedIn: boolean
+}

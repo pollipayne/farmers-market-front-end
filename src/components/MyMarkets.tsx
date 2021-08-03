@@ -1,10 +1,11 @@
 
 import React from 'react';
-import { MarketModel, UserAttribute, UserModel } from '../models/UserModel';
+import { MarketModel, UserAttribute, UserModel } from '../models/Models';
 import { AuthService } from '../services/AuthService';
 import { Link } from 'react-router-dom';
 import { ApiService } from '../services/ApiService';
 import { Market } from '../components/Market';
+import { NewMarketForm } from './NewMarketForm';
 
 
 interface MyMarketsState {
@@ -17,7 +18,6 @@ interface MyMarketProps {
   authService: AuthService
   apiService: ApiService
 }
-
 
 
 export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
@@ -83,6 +83,11 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
         <br />
         <h2> MY MARKETS</h2>
         {this.renderMarkets()}
+        <section>
+          <NewMarketForm></NewMarketForm>
+        </section>
+
+
 
       </div>
     } else {
