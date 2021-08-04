@@ -48,6 +48,12 @@ export class ApiService {
     return postVendor.data;
   }
 
+  public async deleteVendor(vendorId: number) {
+    let deletedVendor = await axios.delete(`http://localhost:3001/vendors/${vendorId}`)
+
+    return deletedVendor;
+  }
+
 
 };
 
