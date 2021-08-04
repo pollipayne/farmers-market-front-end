@@ -9,6 +9,7 @@ import { MyMarkets } from './MyMarkets';
 import React from 'react';
 import { LogOut } from './LogOut';
 import { ApiService } from '../services/ApiService';
+import { MyVendors } from './MyVendors'
 
 // import GoogleLogin from 'react-google-login';
 
@@ -77,6 +78,9 @@ export class App extends React.Component<{}, AppState> {
               </Route>
               <Route exact path='/mymarkets'>
                 <MyMarkets authService={this.authService} user={this.state.user} apiService={this.apiService} />
+              </Route>
+              <Route exact path='/vendors'>
+                <MyVendors authService={this.authService} user={this.state.user} apiService={this.apiService}></MyVendors>
               </Route>
               <Route>
                 <LogOut />

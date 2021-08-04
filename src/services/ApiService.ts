@@ -1,6 +1,7 @@
-import { MarketModel } from '../models/Models';
+import { MarketModel, VendorModel } from '../models/Models';
 import axios from 'axios';
-import { Market } from '../components/Market';
+
+
 
 
 export class ApiService {
@@ -29,4 +30,25 @@ export class ApiService {
 
     return deletedMarket.data;
   }
+
+  public async getVendors(): Promise<VendorModel[]> {
+    const result: VendorModel[] = [];
+    let response = await axios.get('http://localhost:3001/vendors')
+    const vendors = response.data;
+    vendors.forEach((vendor: VendorModel) => {
+      result.push(vendor)
+    })
+    return result;
+
+  }
+
+  public async addNewVendor(newVendor: VendorModel): Promise<VendorModel> {
+    let postVendor = await axios.post('http://localhost:3001/vendors', newVendor)
+
+    return postVendor.data;
+  }
+
+
 };
+
+
