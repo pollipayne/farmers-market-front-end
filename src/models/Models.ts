@@ -26,3 +26,10 @@ export interface LogInState {
   loginAttempted: boolean,
   isLoggedIn: boolean
 }
+
+export interface VendorModel {
+  vendorName: string,
+  vendorSeason: string,
+  marketIds?: number[],
+  id?: number
+}

@@ -1,5 +1,6 @@
 import React, { SyntheticEvent } from 'react';
 import { ApiService } from '../services/ApiService';
+import history from '../utils/history'
 
 
 
@@ -19,12 +20,15 @@ export class Market extends React.Component<MarketProps> {
 
   private handleDelete = async (event: SyntheticEvent) => {
     event.preventDefault();
-    const result = await this.props.apiService?.deleteMarket(this.props.id as number)
-    console.log(result)
+    await this.props.apiService?.deleteMarket(this.props.id as number)
 
     this.props.updateMarkets();
 
+  }
 
+  private handleVendorClick = async (event: SyntheticEvent) => {
+    event.preventDefault();
+    history.push('/vendors')
   }
 
   render() {
@@ -35,7 +39,7 @@ export class Market extends React.Component<MarketProps> {
           <li>{this.props.marketLocation}</li>
           <li>{this.props.marketSeason}</li>
         </ul>
-        <button className='market-vendors' type='button'>See Vendors</button>
+        <button onClick={this.handleVendorClick} className='market-vendors' type='button'>See Vendors</button>
         <button onClick={this.handleDelete} className='delete-market' type='button'> Delete </button>
       </div>
     )
