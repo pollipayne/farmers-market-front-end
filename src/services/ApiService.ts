@@ -1,10 +1,21 @@
-import { MarketModel, VendorModel } from '../models/Models';
+import { MarketModel, VendorModel, UserModel } from '../models/Models';
 import axios from 'axios';
 
 
 
 
 export class ApiService {
+
+  public async getUsers(): Promise<UserModel[]> {
+    const result: UserModel[] = []
+
+    let response = await axios.get('http://localhost:3001/users')
+    const users = response.data
+    users.forEach((user: UserModel) => {
+      result.push(user)
+    })
+    return result;
+  }
 
   public async getMarkets(): Promise<MarketModel[]> {
 
@@ -17,7 +28,6 @@ export class ApiService {
     })
     return result;
   }
-
 
 
   public async addNewMarket(newMarket: MarketModel): Promise<MarketModel> {

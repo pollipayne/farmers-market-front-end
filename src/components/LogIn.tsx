@@ -2,10 +2,13 @@
 import React, { SyntheticEvent } from 'react';
 import { UserModel } from '../models/Models';
 import { AuthService } from '../services/AuthService';
+import { ApiService } from '../services/ApiService';
 import history from '../utils/history';
+import { resourceLimits } from 'worker_threads';
 
 interface LogInProps {
   authService: AuthService,
+  apiService: ApiService
   setUser: (user: UserModel) => void
 }
 interface LogInState {
@@ -37,10 +40,17 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
     this.setState({ password: event.target.value })
   }
 
+  private getAllUsers = async (): Promise<UserModel[]> => {
+    const result = await this.props.apiService.getUsers();
+    return result;
+  }
+
   private async handleSubmit(event: SyntheticEvent) {
     event.preventDefault();
+    const users = await this.getAllUsers();
     this.setState({ loginAttempted: true })
-    const result = await this.props.authService.login(this.state.userName, this.state.password)
+    const result = await this.props.authService.login(this.state.userName, this.state.password, users)
+
     if (result) {
       this.setState({ isLoggedIn: true })
       this.props.setUser(result)

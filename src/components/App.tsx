@@ -47,6 +47,7 @@ export class App extends React.Component<{}, AppState> {
 
 
 
+
   render() {
     return (
       <div className="wrapper">
@@ -55,10 +56,10 @@ export class App extends React.Component<{}, AppState> {
             <NavBar user={this.state.user} />
             <Switch>
               <Route exact path='/'>
-                <LogIn authService={this.authService} setUser={this.setUser} />
+                <LogIn authService={this.authService} setUser={this.setUser} apiService={this.apiService} />
               </Route>
               <Route exact path='/login'>
-                <LogIn authService={this.authService} setUser={this.setUser}></LogIn>
+                <LogIn authService={this.authService} setUser={this.setUser} apiService={this.apiService}></LogIn>
               </Route>
               <Route exact path='/mymarkets'>
                 <MyMarkets authService={this.authService} user={this.state.user} apiService={this.apiService} marketId={this.state.marketId} setMarketId={this.setMarketId} />

@@ -1,17 +1,26 @@
 import { UserAttribute, UserModel } from '../models/Models';
 
 
+
+
+
+
 export class AuthService {
 
-  public async login(userName: string, password: string): Promise<UserModel | undefined> {
-    if (userName === 'user' && password === '1234') {
-      return {
-        userName: userName,
-        email: 'bananas@bananamail.com'
+
+  public login = async (userName: string, password: string, allUsers: UserModel[]): Promise<UserModel | undefined> => {
+    let loggedInUser = undefined
+    allUsers.forEach(user => {
+      if (user.userName === userName && user.password === password) {
+        loggedInUser = user;
       }
+    })
+    if (loggedInUser) {
+      return loggedInUser;
     } else {
       return undefined
     }
+
   }
 
 
