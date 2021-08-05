@@ -15,7 +15,8 @@ interface LogInState {
   userName: string,
   password: string,
   loginAttempted: boolean,
-  isLoggedIn: boolean
+  isLoggedIn: boolean,
+  email: string
 }
 
 interface customEvent {
@@ -27,6 +28,7 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
   state: LogInState = {
     userName: '',
     password: '',
+    email: '',
     loginAttempted: false,
     isLoggedIn: false
   }
@@ -34,6 +36,10 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
   private setUserName(event: customEvent) {
     this.setState({ userName: event.target.value })
 
+  }
+
+  private setUserEmail(event: customEvent) {
+    this.setState({ email: event.target.value })
   }
 
   private setPassword(event: customEvent) {
@@ -49,7 +55,7 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
     event.preventDefault();
     const users = await this.getAllUsers();
     this.setState({ loginAttempted: true })
-    const result = await this.props.authService.login(this.state.userName, this.state.password, users)
+    const result = await this.props.authService.login(this.state.email, this.state.password, users)
 
     if (result) {
       this.setState({ isLoggedIn: true })
@@ -75,7 +81,7 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
       <div>
         <h2>Please Login: </h2>
         <form onSubmit={event => { this.handleSubmit(event) }}>
-          <input value={this.state.userName} onChange={event => { this.setUserName(event) }} /><br />
+          <input value={this.state.email} onChange={event => { this.setUserEmail(event) }} /><br />
           <input value={this.state.password} onChange={event => { this.setPassword(event) }} type='password' /><br />
           <button type='submit'> SUBMIT </button>
         </form>
