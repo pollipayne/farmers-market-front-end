@@ -8,10 +8,10 @@ import { UserAttribute, UserModel } from '../models/Models';
 export class AuthService {
 
 
-  public login = async (userName: string, password: string, allUsers: UserModel[]): Promise<UserModel | undefined> => {
+  public login = async (email: string, password: string, allUsers: UserModel[]): Promise<UserModel | undefined> => {
     let loggedInUser = undefined
     allUsers.forEach(user => {
-      if (user.userName === userName && user.password === password) {
+      if (user.email === email && user.password === password) {
         loggedInUser = user;
       }
     })
