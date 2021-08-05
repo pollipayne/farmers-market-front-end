@@ -17,6 +17,8 @@ export class ApiService {
     return result;
   }
 
+
+
   public async getMarkets(): Promise<MarketModel[]> {
 
     const result: MarketModel[] = [];
@@ -30,11 +32,11 @@ export class ApiService {
   }
 
 
-  public async addNewMarket(newMarket: MarketModel): Promise<MarketModel> {
-    let postMarket = await axios.post('http://localhost:3001/markets', newMarket)
-
+  public async addNewMarket(newMarket: MarketModel, userId: number): Promise<MarketModel> {
+    let postMarket = await axios.post('http://localhost:3001/markets', { newMarket: newMarket, userId: userId })
     return postMarket.data;
   }
+
 
   public async deleteMarket(marketId: number) {
     let deletedMarket = await axios.delete(`http://localhost:3001/markets/${marketId}`)

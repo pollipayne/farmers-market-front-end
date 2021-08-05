@@ -16,7 +16,7 @@ import { MyVendors } from './MyVendors'
 
 
 interface AppState {
-  user: UserModel | undefined
+  user: UserModel
   marketId: number | undefined
 };
 
@@ -28,7 +28,14 @@ export class App extends React.Component<{}, AppState> {
   constructor(props: any) {
     super(props);
     this.state = {
-      user: undefined,
+      user: {
+        userName: '',
+        email: '',
+        password: '',
+        isLoggedIn: false,
+        id: undefined,
+        markets: []
+      },
       marketId: undefined
     }
 
@@ -56,10 +63,10 @@ export class App extends React.Component<{}, AppState> {
             <NavBar user={this.state.user} />
             <Switch>
               <Route exact path='/'>
-                <LogIn authService={this.authService} setUser={this.setUser} apiService={this.apiService} />
+                <LogIn authService={this.authService} setUser={this.setUser} apiService={this.apiService} user={this.state.user} />
               </Route>
               <Route exact path='/login'>
-                <LogIn authService={this.authService} setUser={this.setUser} apiService={this.apiService}></LogIn>
+                <LogIn authService={this.authService} setUser={this.setUser} apiService={this.apiService} user={this.state.user}></LogIn>
               </Route>
               <Route exact path='/mymarkets'>
                 <MyMarkets authService={this.authService} user={this.state.user} apiService={this.apiService} marketId={this.state.marketId} setMarketId={this.setMarketId} />
