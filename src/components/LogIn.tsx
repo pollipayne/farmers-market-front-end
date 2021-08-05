@@ -4,12 +4,13 @@ import { UserModel } from '../models/Models';
 import { AuthService } from '../services/AuthService';
 import { ApiService } from '../services/ApiService';
 import history from '../utils/history';
-import { resourceLimits } from 'worker_threads';
+
 
 interface LogInProps {
   authService: AuthService,
   apiService: ApiService
   setUser: (user: UserModel) => void
+  user: UserModel | undefined
 }
 interface LogInState {
   userName: string,
@@ -51,7 +52,7 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
     return result;
   }
 
-  private async handleSubmit(event: SyntheticEvent) {
+  private handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
     const users = await this.getAllUsers();
     this.setState({ loginAttempted: true })
@@ -60,6 +61,7 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
     if (result) {
       this.setState({ isLoggedIn: true })
       this.props.setUser(result)
+      this.props.user!.isLoggedIn = true
       history.push('/mymarkets')
     } else {
       this.setState({ isLoggedIn: false })

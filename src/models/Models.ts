@@ -5,7 +5,7 @@ export interface UserModel {
   email: string,
   password: string,
   isLoggedIn: boolean,
-  id?: number,
+  id?: number | undefined
   markets: MarketModel[]
 }
 
@@ -21,6 +21,7 @@ export interface MarketModel {
   marketLocation: string,
   marketSeason: string,
   id?: number
+  users: UserModel[]
 }
 
 export interface LogInState {
@@ -33,6 +34,6 @@ export interface LogInState {
 export interface VendorModel {
   vendorName: string,
   vendorSeason: string,
-  marketIds?: number[],
+  markets: MarketModel[],
   id?: number
 }

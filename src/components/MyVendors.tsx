@@ -46,20 +46,26 @@ export class MyVendors extends React.Component<MyVendorProps, MyVendorsState>{
   }
 
   updateVendors = async () => {
+    const marketsVendors: VendorModel[] = []
     const vendors = await this.props.apiService.getVendors();
+
+    if (this.props.marketId) {
+      vendors.forEach(vendor => {
+        vendor.markets.forEach(market => {
+          console.log(vendor.markets, this.props.marketId)
+          if (market.id === this.props.marketId) {
+            marketsVendors.push(vendor)
+          }
+        })
+      })
+    }
     this.setState({
-      vendors: vendors
+      vendors: marketsVendors
     })
   }
 
-  // public getMarketId = () => {
-  //   const marketId = this.props.history.location.detail
-  //   console.log(marketId)
-  //   return Number(marketId)
-  // }
 
   private renderVendors() {
-    /// this is a piece of history state that stores the market ID of the market that was clicked to go to vendors. 
     let vendorList: any[] = []
 
     vendorList = this.state.vendors.map((vendor) => {

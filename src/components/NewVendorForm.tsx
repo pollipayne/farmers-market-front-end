@@ -1,5 +1,6 @@
 
 import React, { SyntheticEvent } from 'react';
+import { MarketModel } from '../models/Models';
 import { ApiService } from '../services/ApiService';
 
 interface VendorFormProps {
@@ -12,7 +13,7 @@ interface VendorFormProps {
 interface NewVendorState {
   vendorName: string,
   vendorSeason: string,
-  marketIds?: number[],
+  markets: MarketModel[]
   vendorId?: number
 }
 
@@ -22,7 +23,7 @@ export class NewVendorForm extends React.Component<VendorFormProps, NewVendorSta
   state: NewVendorState = {
     vendorName: '',
     vendorSeason: '',
-    marketIds: [],
+    markets: [],
 
   }
 
@@ -35,10 +36,7 @@ export class NewVendorForm extends React.Component<VendorFormProps, NewVendorSta
     this.setState({ vendorSeason: event.currentTarget.value })
   }
 
-  // private onMarketChange = (event: React.FormEvent<HTMLInputElement>) => {
-  //   let new_id = Number(event.currentTarget.value)
-  //   this.setState({ marketIds: this.state.marketIds.push(new_id)})
-  // }
+
 
   private handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
@@ -46,7 +44,7 @@ export class NewVendorForm extends React.Component<VendorFormProps, NewVendorSta
       const result = await this.props.apiService.addNewVendor(this.state, this.props.marketId)
       this.props.updateVendors();
       this.setState({ vendorName: '', vendorSeason: '' })
-      this.props.setMarketId(undefined)
+      // this.props.setMarketId(undefined)
     }
 
   }

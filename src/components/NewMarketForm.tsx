@@ -1,10 +1,12 @@
 
 import React, { SyntheticEvent } from 'react';
 import { ApiService } from '../services/ApiService';
+import { UserModel } from '../models/Models'
 
 interface MarketFormProps {
   apiService: ApiService
   updateMarkets: () => void;
+  user: UserModel
 }
 
 interface NewMarketState {
@@ -12,6 +14,7 @@ interface NewMarketState {
   marketLocation: string,
   marketSeason: string,
   id?: number
+  users: UserModel[]
 }
 
 
@@ -20,7 +23,8 @@ export class NewMarketForm extends React.Component<MarketFormProps, NewMarketSta
   state: NewMarketState = {
     marketName: '',
     marketLocation: '',
-    marketSeason: ''
+    marketSeason: '',
+    users: []
   }
 
 
@@ -38,11 +42,15 @@ export class NewMarketForm extends React.Component<MarketFormProps, NewMarketSta
 
   private handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
-    const result = await this.props.apiService.addNewMarket(this.state)
-    console.log(result)
-    this.props.updateMarkets();
-    this.setState({ marketName: '', marketLocation: '', marketSeason: '' })
+    if (this.props.user.id) {
+      const result = await this.props.apiService.addNewMarket(this.state, this.props.user.id)
+      this.props.updateMarkets();
+      this.setState({ marketName: '', marketLocation: '', marketSeason: '' })
+    }
+
   }
+
+
 
   render() {
     return (

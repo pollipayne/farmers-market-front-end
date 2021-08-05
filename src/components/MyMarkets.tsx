@@ -14,7 +14,7 @@ interface MyMarketsState {
 }
 
 interface MyMarketProps {
-  user: UserModel | undefined
+  user: UserModel
   authService: AuthService
   apiService: ApiService
   marketId: number | undefined
@@ -39,15 +39,27 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
   }
 
   updateMarkets = async () => {
+    const usersMarkets: MarketModel[] = []
     const markets = await this.props.apiService.getMarkets();
+
+    if (this.props.user) {
+      markets.forEach(market => {
+        market.users.forEach(user => {
+          if (user.id === this.props.user.id) {
+            usersMarkets.push(market)
+          }
+        })
+      })
+    }
     this.setState({
-      markets: markets
+      markets: usersMarkets
     })
   }
 
 
   private renderMarkets() {
     let marketList: any[] = []
+
 
     marketList = this.state.markets.map((market) => {
       return <li >
@@ -90,7 +102,7 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
         <h2> MY MARKETS</h2>
         {this.renderMarkets()}
         <section>
-          <NewMarketForm apiService={this.props.apiService} updateMarkets={this.updateMarkets} ></NewMarketForm>
+          <NewMarketForm apiService={this.props.apiService} updateMarkets={this.updateMarkets} user={this.props.user}></NewMarketForm>
         </section>
 
 
