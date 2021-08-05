@@ -3,7 +3,10 @@
 export interface UserModel {
   userName: string,
   email: string,
-  isLoggedIn?: boolean
+  password: string,
+  isLoggedIn: boolean,
+  id?: number,
+  markets: MarketModel[]
 }
 
 
