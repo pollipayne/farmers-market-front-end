@@ -5,12 +5,15 @@ import { ApiService } from '../services/ApiService';
 interface VendorFormProps {
   apiService: ApiService
   updateVendors: () => void;
+  marketId: number | undefined
+  setMarketId: (number: number | undefined) => void
 }
 
 interface NewVendorState {
   vendorName: string,
   vendorSeason: string,
-  marketIds?: number[]
+  marketIds?: number[],
+  vendorId?: number
 }
 
 
@@ -19,7 +22,8 @@ export class NewVendorForm extends React.Component<VendorFormProps, NewVendorSta
   state: NewVendorState = {
     vendorName: '',
     vendorSeason: '',
-    marketIds: []
+    marketIds: [],
+
   }
 
 
@@ -38,10 +42,13 @@ export class NewVendorForm extends React.Component<VendorFormProps, NewVendorSta
 
   private handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
-    const result = await this.props.apiService.addNewVendor(this.state)
-    console.log(result)
-    this.props.updateVendors();
-    this.setState({ vendorName: '', vendorSeason: '' })
+    if (this.props.marketId) {
+      const result = await this.props.apiService.addNewVendor(this.state, this.props.marketId)
+      this.props.updateVendors();
+      this.setState({ vendorName: '', vendorSeason: '' })
+      this.props.setMarketId(undefined)
+    }
+
   }
 
   render() {

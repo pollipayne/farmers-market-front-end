@@ -10,7 +10,8 @@ interface MarketFormProps {
 interface NewMarketState {
   marketName: string,
   marketLocation: string,
-  marketSeason: string
+  marketSeason: string,
+  id?: number
 }
 
 

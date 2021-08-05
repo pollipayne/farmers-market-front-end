@@ -1,11 +1,14 @@
 
 import React from 'react';
-import { VendorModel, UserAttribute, UserModel } from '../models/Models';
+import { VendorModel, UserAttribute, UserModel, MarketModel } from '../models/Models';
 import { AuthService } from '../services/AuthService';
 import { Link } from 'react-router-dom';
 import { ApiService } from '../services/ApiService';
 import { Vendor } from '../components/Vendor';
 import { NewVendorForm } from './NewVendorForm';
+
+
+
 
 
 interface MyVendorsState {
@@ -17,6 +20,9 @@ interface MyVendorProps {
   user: UserModel | undefined
   authService: AuthService
   apiService: ApiService
+  history: any
+  marketId: number | undefined
+  setMarketId: (number: number | undefined) => void;
 }
 
 
@@ -25,6 +31,9 @@ export class MyVendors extends React.Component<MyVendorProps, MyVendorsState>{
     userAttributes: [],
     vendors: []
   }
+
+
+
 
   async componentDidMount() {
     if (this.props.user) {
@@ -43,8 +52,14 @@ export class MyVendors extends React.Component<MyVendorProps, MyVendorsState>{
     })
   }
 
+  // public getMarketId = () => {
+  //   const marketId = this.props.history.location.detail
+  //   console.log(marketId)
+  //   return Number(marketId)
+  // }
 
   private renderVendors() {
+    /// this is a piece of history state that stores the market ID of the market that was clicked to go to vendors. 
     let vendorList: any[] = []
 
     vendorList = this.state.vendors.map((vendor) => {
@@ -72,7 +87,8 @@ export class MyVendors extends React.Component<MyVendorProps, MyVendorsState>{
         <h2> MY VENDORS</h2>
         {this.renderVendors()}
         <section>
-          <NewVendorForm apiService={this.props.apiService} updateVendors={this.updateVendors} ></NewVendorForm>
+
+          <NewVendorForm apiService={this.props.apiService} updateVendors={this.updateVendors} marketId={this.props.marketId} setMarketId={this.props.setMarketId}></NewVendorForm>
         </section>
 
 

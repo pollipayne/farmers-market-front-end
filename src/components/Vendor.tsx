@@ -17,13 +17,13 @@ interface VendorProps {
 
 export class Vendor extends React.Component<VendorProps> {
 
-  // private handleDelete = async (event: SyntheticEvent) => {
-  //   event.preventDefault();
-  //   await this.props.apiService?.deleteMarket(this.props.id as number)
+  private handleDelete = async (event: SyntheticEvent) => {
+    event.preventDefault();
+    await this.props.apiService?.deleteVendor(this.props.id as number)
 
-  //   this.props.updateMarkets();
+    this.props.updateVendors();
 
-  // }
+  }
 
 
 
@@ -35,7 +35,7 @@ export class Vendor extends React.Component<VendorProps> {
           <li>{this.props.vendorSeason}</li>
         </ul>
         <button className='vendor-products' type='button'>See Products</button>
-        <button className='delete-vendor' type='button'> Delete </button>
+        <button onClick={this.handleDelete} className='delete-vendor' type='button'> Delete </button>
       </div>
     )
   }
