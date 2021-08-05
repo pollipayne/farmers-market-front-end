@@ -12,11 +12,21 @@ interface MarketProps {
   marketSeason: string,
   apiService?: ApiService
   updateMarkets: () => void;
+  marketId: number | undefined
+  setMarketId: (number: number) => void;
+}
+
+interface MarketState {
+  id?: number | undefined
 }
 
 
 
-export class Market extends React.Component<MarketProps> {
+export class Market extends React.Component<MarketProps, MarketState> {
+
+  state: MarketState = {
+    id: undefined
+  }
 
   private handleDelete = async (event: SyntheticEvent) => {
     event.preventDefault();
@@ -27,6 +37,9 @@ export class Market extends React.Component<MarketProps> {
   }
 
   private handleVendorClick = async (event: SyntheticEvent) => {
+    if (this.props.id) {
+      this.props.setMarketId(this.props.id)
+    }
     event.preventDefault();
     history.push('/vendors')
   }

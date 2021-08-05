@@ -17,6 +17,8 @@ interface MyMarketProps {
   user: UserModel | undefined
   authService: AuthService
   apiService: ApiService
+  marketId: number | undefined
+  setMarketId: (number: number) => void;
 }
 
 
@@ -49,7 +51,7 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
 
     marketList = this.state.markets.map((market) => {
       return <li >
-        <Market key={market.id} id={market.id} marketName={market.marketName} marketLocation={market.marketLocation} marketSeason={market.marketSeason} apiService={this.props.apiService} updateMarkets={this.updateMarkets} />
+        <Market key={market.id} id={market.id} marketName={market.marketName} marketLocation={market.marketLocation} marketSeason={market.marketSeason} apiService={this.props.apiService} updateMarkets={this.updateMarkets} marketId={this.props.marketId} setMarketId={this.props.setMarketId} />
       </li>
     })
     return (

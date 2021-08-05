@@ -11,14 +11,13 @@ import { LogOut } from './LogOut';
 import { ApiService } from '../services/ApiService';
 import { MyVendors } from './MyVendors'
 
-// import GoogleLogin from 'react-google-login';
 
 
 
 
 interface AppState {
   user: UserModel | undefined
-  market: MarketModel | undefined
+  marketId: number | undefined
 };
 
 export class App extends React.Component<{}, AppState> {
@@ -30,10 +29,11 @@ export class App extends React.Component<{}, AppState> {
     super(props);
     this.state = {
       user: undefined,
-      market: undefined
+      marketId: undefined
     }
 
     this.setUser = this.setUser.bind(this)
+
   }
   private setUser(user: UserModel) {
     this.setState({
@@ -41,20 +41,11 @@ export class App extends React.Component<{}, AppState> {
     })
   }
 
-  // public async handleLogin(googleData: any) {
-  //   const res = await fetch("/api/v1/auth/google", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       token: googleData.tokenId
-  //     }),
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     }
-  //   })
-  //   const data = await res.json()
-  //   // store returned user somehow
-  //   console.log(data)
-  // }
+  private setMarketId = (newMarketId: number | undefined) => {
+    this.setState({ marketId: newMarketId })
+  }
+
+
 
   render() {
     return (
@@ -62,13 +53,6 @@ export class App extends React.Component<{}, AppState> {
         <Router history={history}>
           <div>
             <NavBar user={this.state.user} />
-            {/* <GoogleLogin
-              clientId={String(process.env.REACT_APP_GOOGLE_CLIENT_ID)}
-              buttonText="Log in with Google"
-              onSuccess={this.handleLogin}
-              onFailure={this.handleLogin}
-              cookiePolicy={'single_host_origin'}
-            /> */}
             <Switch>
               <Route exact path='/'>
                 <LogIn authService={this.authService} setUser={this.setUser} />
@@ -77,10 +61,10 @@ export class App extends React.Component<{}, AppState> {
                 <LogIn authService={this.authService} setUser={this.setUser}></LogIn>
               </Route>
               <Route exact path='/mymarkets'>
-                <MyMarkets authService={this.authService} user={this.state.user} apiService={this.apiService} />
+                <MyMarkets authService={this.authService} user={this.state.user} apiService={this.apiService} marketId={this.state.marketId} setMarketId={this.setMarketId} />
               </Route>
               <Route exact path='/vendors'>
-                <MyVendors authService={this.authService} user={this.state.user} apiService={this.apiService}></MyVendors>
+                <MyVendors authService={this.authService} user={this.state.user} apiService={this.apiService} history={history} marketId={this.state.marketId} setMarketId={this.setMarketId}></MyVendors>
               </Route>
               <Route>
                 <LogOut />

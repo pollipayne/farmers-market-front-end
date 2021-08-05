@@ -19,6 +19,7 @@ export class ApiService {
   }
 
 
+
   public async addNewMarket(newMarket: MarketModel): Promise<MarketModel> {
     let postMarket = await axios.post('http://localhost:3001/markets', newMarket)
 
@@ -42,8 +43,8 @@ export class ApiService {
 
   }
 
-  public async addNewVendor(newVendor: VendorModel): Promise<VendorModel> {
-    let postVendor = await axios.post('http://localhost:3001/vendors', newVendor)
+  public async addNewVendor(newVendor: VendorModel, marketId: number): Promise<VendorModel> {
+    let postVendor = await axios.post('http://localhost:3001/vendors', { newVendor: newVendor, marketId: marketId })
 
     return postVendor.data;
   }
