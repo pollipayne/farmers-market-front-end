@@ -26,14 +26,17 @@ export class AuthService {
 
   public async getUserAttributes(user: UserModel): Promise<UserAttribute[]> {
     const result: UserAttribute[] = [];
-    result.push({
-      Name: "description",
-      Value: "Some information about some stuff"
-    })
-    result.push({
-      Name: "more information",
-      Value: "Some more information about some stuff"
-    })
+    if (user.isLoggedIn === false) {
+      result.push({
+        Name: "Welcome to My Farmers Market!",
+        Value: "Please log in to see your markets!"
+      })
+    } else {
+      result.push({
+        Name: `Welcome to your favorite markets ${user.userName}!`,
+        Value: "Click on a market below to see it's vendors!"
+      })
+    }
     return result
 
   }

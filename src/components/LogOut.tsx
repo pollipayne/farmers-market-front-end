@@ -9,23 +9,12 @@ interface LogOutProps {
 
 export class LogOut extends React.Component<LogOutProps> {
 
-  // public logUserOut = () => {
-  //   this.props.setUser({
-  //     userName: '',
-  //     email: '',
-  //     password: '',
-  //     isLoggedIn: false,
-  //     id: undefined,
-  //     markets: []
-  //   })
-  // }
+
 
   render() {
 
-
     return (
       <div>
-        {/* {this.logUserOut()} */}
 
         {console.log(this.props.user)}
         You have been logged out.
