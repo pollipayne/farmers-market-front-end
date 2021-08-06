@@ -14,6 +14,7 @@ interface MarketProps {
   updateMarkets: () => void;
   marketId: number | undefined
   setMarketId: (number: number) => void;
+  setMarketName: (string: string) => void;
 }
 
 interface MarketState {
@@ -39,6 +40,7 @@ export class Market extends React.Component<MarketProps, MarketState> {
   private handleVendorClick = async (event: SyntheticEvent) => {
     if (this.props.id) {
       this.props.setMarketId(this.props.id)
+      this.props.setMarketName(this.props.marketName)
     }
     event.preventDefault();
     history.push('/vendors')

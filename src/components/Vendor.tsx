@@ -13,6 +13,7 @@ interface VendorProps {
   updateVendors: () => void;
   vendorId: number | undefined
   setVendorId: (number: number) => void;
+  setVendorName: (string: string) => void;
 }
 interface VendorState {
   id?: number | undefined
@@ -37,6 +38,7 @@ export class Vendor extends React.Component<VendorProps> {
   private handleProductClick = async (event: SyntheticEvent) => {
     if (this.props.id) {
       this.props.setVendorId(this.props.id)
+      this.props.setVendorName(this.props.vendorName)
     }
     event.preventDefault();
     history.push('/products')

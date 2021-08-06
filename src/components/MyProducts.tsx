@@ -1,11 +1,12 @@
 
-import React from 'react';
-import { UserAttribute, UserModel, ProductModel } from '../models/Models';
+import React, { SyntheticEvent } from 'react';
+import { UserAttribute, UserModel, ProductModel, VendorModel } from '../models/Models';
 import { AuthService } from '../services/AuthService';
 import { Link } from 'react-router-dom';
 import { ApiService } from '../services/ApiService';
 import { Product } from './Product';
 import { NewProductForm } from './NewProductForm'
+import history from '../utils/history'
 
 
 
@@ -23,6 +24,7 @@ interface MyProductProps {
   history: any
   vendorId: number | undefined
   setVendorId: (number: number | undefined) => void;
+  vendorName: string | undefined
 }
 
 
@@ -64,6 +66,15 @@ export class MyProducts extends React.Component<MyProductProps, MyProductsState>
     })
   }
 
+  private getVendorName = async () => {
+
+    if (this.props.vendorId) {
+      const currentVendor = await this.props.apiService.getSingleVendor(this.props.vendorId)
+      console.log(currentVendor.vendorName)
+      return currentVendor.vendorName;
+    }
+  }
+
 
   private renderProducts() {
     let productList: any[] = []
@@ -82,14 +93,23 @@ export class MyProducts extends React.Component<MyProductProps, MyProductsState>
     )
   }
 
+  private goBackToVendors = async (event: SyntheticEvent) => {
+    event.preventDefault();
+    history.goBack();
+
+  }
+
 
 
   render() {
 
     let profileSpace
+
     if (this.props.user) {
       profileSpace = <div>
-        <h2> WELCOME {this.props.user?.userName} !</h2>
+        <h2> Oh hey, {this.props.user?.userName}- these are your favorite products from {this.props.vendorName} </h2>
+        <button onClick={this.goBackToVendors}>BACK TO MY VENDORS </button>
+
         <h2> MY PRODUCTS</h2>
         {this.renderProducts()}
         <section>

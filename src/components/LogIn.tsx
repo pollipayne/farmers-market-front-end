@@ -1,9 +1,10 @@
 
 import React, { SyntheticEvent } from 'react';
-import { UserModel } from '../models/Models';
+import { UserModel, MarketModel } from '../models/Models';
 import { AuthService } from '../services/AuthService';
 import { ApiService } from '../services/ApiService';
 import history from '../utils/history';
+import { SignUpForm } from './SignUpForm';
 
 
 interface LogInProps {
@@ -18,6 +19,7 @@ interface LogInState {
   loginAttempted: boolean,
   isLoggedIn: boolean,
   email: string
+  markets: MarketModel[]
 }
 
 interface customEvent {
@@ -31,7 +33,8 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
     password: '',
     email: '',
     loginAttempted: false,
-    isLoggedIn: false
+    isLoggedIn: false,
+    markets: []
   }
 
   private setUserName(event: customEvent) {
@@ -90,6 +93,8 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
           <button type='submit'> SUBMIT </button>
         </form>
         {loginMessage}
+
+        <SignUpForm apiService={this.props.apiService} authService={this.props.authService} user={this.props.user} getAllUsers={this.getAllUsers} setUser={this.props.setUser}></SignUpForm>
 
       </div>
     )

@@ -19,6 +19,8 @@ interface MyMarketProps {
   apiService: ApiService
   marketId: number | undefined
   setMarketId: (number: number) => void;
+  marketName: string | undefined
+  setMarketName: (string: string) => void;
 }
 
 
@@ -63,7 +65,7 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
 
     marketList = this.state.markets.map((market) => {
       return <li >
-        <Market key={market.id} id={market.id} marketName={market.marketName} marketLocation={market.marketLocation} marketSeason={market.marketSeason} apiService={this.props.apiService} updateMarkets={this.updateMarkets} marketId={this.props.marketId} setMarketId={this.props.setMarketId} />
+        <Market key={market.id} id={market.id} marketName={market.marketName} marketLocation={market.marketLocation} marketSeason={market.marketSeason} apiService={this.props.apiService} updateMarkets={this.updateMarkets} marketId={this.props.marketId} setMarketId={this.props.setMarketId} setMarketName={this.props.setMarketName} />
       </li>
     })
     return (
@@ -96,7 +98,6 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
     if (this.props.user) {
       profileSpace = <div>
         <h2> WELCOME {this.props.user?.userName} !</h2>
-        Here are your Attributes:
         {this.renderUserAttributes()}
         <br />
         <h2> MY MARKETS</h2>
@@ -115,7 +116,7 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
     }
 
     return (
-      <div> Users logged in home page
+      <div>
         {profileSpace}<br />
 
       </div>

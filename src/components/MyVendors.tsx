@@ -1,11 +1,12 @@
 
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import { VendorModel, UserAttribute, UserModel, MarketModel } from '../models/Models';
 import { AuthService } from '../services/AuthService';
 import { Link } from 'react-router-dom';
 import { ApiService } from '../services/ApiService';
 import { Vendor } from '../components/Vendor';
 import { NewVendorForm } from './NewVendorForm';
+import history from '../utils/history'
 
 
 
@@ -22,9 +23,13 @@ interface MyVendorProps {
   apiService: ApiService
   history: any
   marketId: number | undefined
+  marketName: string | undefined
   setMarketId: (number: number | undefined) => void;
+  setMarketName: (string: string) => void;
   vendorId: number | undefined
+  vendorName: string | undefined
   setVendorId: (number: number | undefined) => void;
+  setVendorName: (string: string) => void;
 }
 
 
@@ -71,7 +76,7 @@ export class MyVendors extends React.Component<MyVendorProps, MyVendorsState>{
 
     vendorList = this.state.vendors.map((vendor) => {
       return <li >
-        <Vendor key={vendor.id} id={vendor.id} vendorName={vendor.vendorName} vendorSeason={vendor.vendorSeason} apiService={this.props.apiService} updateVendors={this.updateVendors} vendorId={this.props.vendorId} setVendorId={this.props.setVendorId} />
+        <Vendor key={vendor.id} id={vendor.id} vendorName={vendor.vendorName} vendorSeason={vendor.vendorSeason} apiService={this.props.apiService} updateVendors={this.updateVendors} vendorId={this.props.vendorId} setVendorId={this.props.setVendorId} setVendorName={this.props.setVendorName} />
       </li>
     })
     return (
@@ -83,6 +88,12 @@ export class MyVendors extends React.Component<MyVendorProps, MyVendorsState>{
     )
   }
 
+  private goBackToMarkets = async (event: SyntheticEvent) => {
+    event.preventDefault();
+    history.goBack();
+
+  }
+
 
 
   render() {
@@ -90,7 +101,8 @@ export class MyVendors extends React.Component<MyVendorProps, MyVendorsState>{
     let profileSpace
     if (this.props.user) {
       profileSpace = <div>
-        <h2> WELCOME {this.props.user?.userName} !</h2>
+        <h2> Oh hey, {this.props.user?.userName}- these are your favorite vendors from {this.props.marketName} </h2>
+        <button onClick={this.goBackToMarkets}>BACK TO MY MARKETS </button>
         <h2> MY VENDORS</h2>
         {this.renderVendors()}
         <section>
@@ -108,7 +120,7 @@ export class MyVendors extends React.Component<MyVendorProps, MyVendorsState>{
     }
 
     return (
-      <div> Users logged in home page
+      <div>
         {profileSpace}<br />
 
       </div>
