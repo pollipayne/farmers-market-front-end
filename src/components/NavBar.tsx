@@ -14,7 +14,7 @@ export class NavBar extends React.Component<{
   render() {
     let logInLogOut: any
     if (this.props.user) {
-      logInLogOut = <Link to='/logout'>{this.props.user.userName} LOGOUT </Link>
+      logInLogOut = <Link to='/logout'> LOGOUT </Link>
     } else {
       logInLogOut = <Link to='/login'> HOME</Link>
     }

@@ -46,6 +46,7 @@ export class App extends React.Component<{}, AppState> {
 
   }
   private setUser(user: UserModel) {
+
     this.setState({
       user: user
     })
@@ -84,7 +85,7 @@ export class App extends React.Component<{}, AppState> {
 
               </Route>
               <Route>
-                <LogOut />
+                <LogOut user={this.state.user} setUser={this.setUser} />
               </Route>
             </Switch>
           </div>
