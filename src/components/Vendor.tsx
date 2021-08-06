@@ -11,11 +11,20 @@ interface VendorProps {
   vendorSeason: string,
   apiService?: ApiService
   updateVendors: () => void;
+  vendorId: number | undefined
+  setVendorId: (number: number) => void;
+}
+interface VendorState {
+  id?: number | undefined
 }
 
 
 
 export class Vendor extends React.Component<VendorProps> {
+
+  state: VendorState = {
+    id: undefined
+  }
 
   private handleDelete = async (event: SyntheticEvent) => {
     event.preventDefault();
@@ -23,6 +32,14 @@ export class Vendor extends React.Component<VendorProps> {
 
     this.props.updateVendors();
 
+  }
+
+  private handleProductClick = async (event: SyntheticEvent) => {
+    if (this.props.id) {
+      this.props.setVendorId(this.props.id)
+    }
+    event.preventDefault();
+    history.push('/products')
   }
 
 
@@ -34,7 +51,7 @@ export class Vendor extends React.Component<VendorProps> {
           <li>{this.props.vendorName}</li>
           <li>{this.props.vendorSeason}</li>
         </ul>
-        <button className='vendor-products' type='button'>See Products</button>
+        <button onClick={this.handleProductClick} className='vendor-products' type='button'>See Products</button>
         <button onClick={this.handleDelete} className='delete-vendor' type='button'> Delete </button>
       </div>
     )

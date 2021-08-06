@@ -23,6 +23,8 @@ interface MyVendorProps {
   history: any
   marketId: number | undefined
   setMarketId: (number: number | undefined) => void;
+  vendorId: number | undefined
+  setVendorId: (number: number | undefined) => void;
 }
 
 
@@ -46,21 +48,20 @@ export class MyVendors extends React.Component<MyVendorProps, MyVendorsState>{
   }
 
   updateVendors = async () => {
-    const marketsVendors: VendorModel[] = []
+    const vendorsMatchMarketId: VendorModel[] = []
     const vendors = await this.props.apiService.getVendors();
 
     if (this.props.marketId) {
       vendors.forEach(vendor => {
         vendor.markets.forEach(market => {
-          console.log(vendor.markets, this.props.marketId)
           if (market.id === this.props.marketId) {
-            marketsVendors.push(vendor)
+            vendorsMatchMarketId.push(vendor)
           }
         })
       })
     }
     this.setState({
-      vendors: marketsVendors
+      vendors: vendorsMatchMarketId
     })
   }
 
@@ -70,7 +71,7 @@ export class MyVendors extends React.Component<MyVendorProps, MyVendorsState>{
 
     vendorList = this.state.vendors.map((vendor) => {
       return <li >
-        <Vendor key={vendor.id} id={vendor.id} vendorName={vendor.vendorName} vendorSeason={vendor.vendorSeason} apiService={this.props.apiService} updateVendors={this.updateVendors} />
+        <Vendor key={vendor.id} id={vendor.id} vendorName={vendor.vendorName} vendorSeason={vendor.vendorSeason} apiService={this.props.apiService} updateVendors={this.updateVendors} vendorId={this.props.vendorId} setVendorId={this.props.setVendorId} />
       </li>
     })
     return (
