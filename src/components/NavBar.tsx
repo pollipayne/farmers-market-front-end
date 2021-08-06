@@ -30,7 +30,6 @@ export class NavBar extends React.Component<NavBarProps, NavBarState> {
     return (
       <div className="navbar">
         <Link to='/login'> HOME </Link>
-        <Link to='/mymarkets'> My Markets </Link>
         <Link to='/logout' onClick={this.changeLogState}> LOGOUT </Link>
 
 

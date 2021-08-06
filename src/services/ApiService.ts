@@ -17,6 +17,11 @@ export class ApiService {
     return result;
   }
 
+  public async addNewUser(newUser: UserModel): Promise<UserModel> {
+    let postUser = await axios.post('http://localhost:3001/users', newUser)
+    return postUser.data;
+  }
+
 
   public async getMarkets(): Promise<MarketModel[]> {
 
@@ -51,6 +56,15 @@ export class ApiService {
       result.push(vendor)
     })
     return result;
+
+  }
+
+
+  public async getSingleVendor(vendorId: number) {
+    console.log("im in the function! ")
+    const result = await axios.get(`http://localhost:3001/vendors/${vendorId}`)
+    console.log(result.data)
+    return result.data;
 
   }
 

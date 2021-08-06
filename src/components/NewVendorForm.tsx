@@ -1,6 +1,6 @@
 
 import React, { SyntheticEvent } from 'react';
-import { MarketModel } from '../models/Models';
+import { MarketModel, ProductModel } from '../models/Models';
 import { ApiService } from '../services/ApiService';
 
 interface VendorFormProps {
@@ -15,6 +15,7 @@ interface NewVendorState {
   vendorSeason: string,
   markets: MarketModel[]
   vendorId?: number
+  products: ProductModel[]
 }
 
 
@@ -24,6 +25,7 @@ export class NewVendorForm extends React.Component<VendorFormProps, NewVendorSta
     vendorName: '',
     vendorSeason: '',
     markets: [],
+    products: []
 
   }
 

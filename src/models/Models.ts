@@ -35,6 +35,7 @@ export interface VendorModel {
   vendorName: string,
   vendorSeason: string,
   markets: MarketModel[],
+  products: ProductModel[]
   id?: number
 }
 
