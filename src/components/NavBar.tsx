@@ -1,29 +1,38 @@
 
 import React from 'react';
-import { UserModel } from '../models/Models';
+import { UserModel, MarketModel } from '../models/Models';
 import { Link } from 'react-router-dom';
 
-
-
-
-export class NavBar extends React.Component<{
+interface NavBarProps {
   user: UserModel | undefined
-}> {
+  logOut: () => void;
+}
+
+interface NavBarState {
+  isLoggedIn: boolean | undefined,
+}
+
+
+export class NavBar extends React.Component<NavBarProps, NavBarState> {
+  state: NavBarState = {
+    isLoggedIn: this.props.user?.isLoggedIn,
+  }
+
+  private changeLogState = () => {
+    this.props.logOut()
+    this.setState({ isLoggedIn: false })
+
+  }
 
 
   render() {
-    let logInLogOut: any
-    if (this.props.user) {
-      logInLogOut = <Link to='/logout'>{this.props.user.userName} LOGOUT </Link>
-    } else {
-      logInLogOut = <Link to='/login'> HOME</Link>
-    }
-
 
     return (
       <div className="navbar">
-        {logInLogOut}
+        <Link to='/login'> HOME </Link>
         <Link to='/mymarkets'> My Markets </Link>
+        <Link to='/logout' onClick={this.changeLogState}> LOGOUT </Link>
+
 
       </div>
     )

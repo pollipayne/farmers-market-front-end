@@ -83,8 +83,10 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
       <div>
         <h2>Please Login: </h2>
         <form onSubmit={event => { this.handleSubmit(event) }}>
-          <input value={this.state.email} onChange={event => { this.setUserEmail(event) }} /><br />
-          <input value={this.state.password} onChange={event => { this.setPassword(event) }} type='password' /><br />
+          <label htmlFor="user-email">Email: </label>
+          <input name='user-email' value={this.state.email} onChange={event => { this.setUserEmail(event) }} /><br />
+          <label htmlFor='user-password'>Password:  </label>
+          <input name='user-password' value={this.state.password} onChange={event => { this.setPassword(event) }} type='password' /><br />
           <button type='submit'> SUBMIT </button>
         </form>
         {loginMessage}

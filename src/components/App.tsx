@@ -46,6 +46,7 @@ export class App extends React.Component<{}, AppState> {
 
   }
   private setUser(user: UserModel) {
+
     this.setState({
       user: user
     })
@@ -59,13 +60,23 @@ export class App extends React.Component<{}, AppState> {
     this.setState({ vendorId: newVendorId })
   }
 
+  private logUserOut = () => {
+    this.setUser({
+      userName: '',
+      email: '',
+      password: '',
+      isLoggedIn: false,
+      id: undefined,
+      markets: []
+    })
+  }
 
   render() {
     return (
       <div className="wrapper">
         <Router history={history}>
           <div>
-            <NavBar user={this.state.user} />
+            <NavBar user={this.state.user} logOut={this.logUserOut} />
             <Switch>
               <Route exact path='/'>
                 <LogIn authService={this.authService} setUser={this.setUser} apiService={this.apiService} user={this.state.user} />
@@ -84,7 +95,7 @@ export class App extends React.Component<{}, AppState> {
 
               </Route>
               <Route>
-                <LogOut />
+                <LogOut user={this.state.user} setUser={this.setUser} />
               </Route>
             </Switch>
           </div>
