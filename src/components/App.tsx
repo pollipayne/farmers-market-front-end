@@ -10,6 +10,7 @@ import React from 'react';
 import { LogOut } from './LogOut';
 import { ApiService } from '../services/ApiService';
 import { MyVendors } from './MyVendors'
+import { MyProducts } from './MyProducts'
 
 
 
@@ -18,6 +19,7 @@ import { MyVendors } from './MyVendors'
 interface AppState {
   user: UserModel
   marketId: number | undefined
+  vendorId: number | undefined
 };
 
 export class App extends React.Component<{}, AppState> {
@@ -36,7 +38,8 @@ export class App extends React.Component<{}, AppState> {
         id: undefined,
         markets: []
       },
-      marketId: undefined
+      marketId: undefined,
+      vendorId: undefined
     }
 
     this.setUser = this.setUser.bind(this)
@@ -52,7 +55,9 @@ export class App extends React.Component<{}, AppState> {
     this.setState({ marketId: newMarketId })
   }
 
-
+  private setVendorId = (newVendorId: number | undefined) => {
+    this.setState({ vendorId: newVendorId })
+  }
 
 
   render() {
@@ -72,7 +77,11 @@ export class App extends React.Component<{}, AppState> {
                 <MyMarkets authService={this.authService} user={this.state.user} apiService={this.apiService} marketId={this.state.marketId} setMarketId={this.setMarketId} />
               </Route>
               <Route exact path='/vendors'>
-                <MyVendors authService={this.authService} user={this.state.user} apiService={this.apiService} history={history} marketId={this.state.marketId} setMarketId={this.setMarketId}></MyVendors>
+                <MyVendors authService={this.authService} user={this.state.user} apiService={this.apiService} history={history} marketId={this.state.marketId} setMarketId={this.setMarketId} vendorId={this.state.vendorId} setVendorId={this.setVendorId} />
+              </Route>
+              <Route exact path='/products'>
+                <MyProducts authService={this.authService} user={this.state.user} apiService={this.apiService} history={history} vendorId={this.state.vendorId} setVendorId={this.setVendorId} />
+
               </Route>
               <Route>
                 <LogOut />
