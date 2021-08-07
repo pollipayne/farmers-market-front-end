@@ -46,3 +46,15 @@ export interface ProductModel {
   vendors: VendorModel[],
   id?: number
 }
+
+export interface LocalMarketModel {
+  id: string
+  marketname: string
+}
+
+export interface LocalMarketDetails {
+  GoogleLink: string
+  Address: string
+  Schedule: string
+  Products: string
+}

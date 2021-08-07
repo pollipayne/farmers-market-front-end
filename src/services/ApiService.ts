@@ -1,4 +1,4 @@
-import { MarketModel, VendorModel, UserModel, ProductModel } from '../models/Models';
+import { MarketModel, VendorModel, UserModel, ProductModel, LocalMarketModel, LocalMarketDetails } from '../models/Models';
 import axios from 'axios';
 
 
@@ -104,6 +104,34 @@ export class ApiService {
 
     return deletedProduct;
   }
+
+  public async findLocalMarkets(zipCode: string) {
+    const result: LocalMarketModel[] = []
+
+    let response = await axios.get(`http://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip=${zipCode}`)
+    if (response) {
+      response.data.results.forEach((market: LocalMarketModel) => {
+        let marketId = market.id
+        let marketname = market.marketname.split(" ").slice(1).join(" ")
+        result.push({ id: marketId, marketname: marketname })
+      })
+    }
+    return result;
+  }
+
+  public async getLocalMarketInfo(localMarketId: string) {
+    const result: LocalMarketDetails[] = []
+
+    let response = await axios.get(`http://search.ams.usda.gov/farmersmarkets/v1/data.svc/mktDetail?id=${localMarketId}`)
+
+    if (response) {
+      response.data.marketdetails.forEach((market: LocalMarketDetails) => {
+        result.push(market)
+      })
+    }
+    return result;
+  }
+
 };
 
 
