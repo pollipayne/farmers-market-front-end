@@ -46,7 +46,6 @@ export class NewVendorForm extends React.Component<VendorFormProps, NewVendorSta
       const result = await this.props.apiService.addNewVendor(this.state, this.props.marketId)
       this.props.updateVendors();
       this.setState({ vendorName: '', vendorSeason: '' })
-      // this.props.setMarketId(undefined)
     }
 
   }
@@ -55,7 +54,7 @@ export class NewVendorForm extends React.Component<VendorFormProps, NewVendorSta
     return (
       <form>
         <div>
-          <h2> Add A New Vendor </h2>
+          <h2> Add A New Favorite Vendor </h2>
           <label htmlFor='vendor-name'> NAME: </label>
           <input name='vendor-name' onChange={this.onNameChange} type="text" value={this.state.vendorName} /><br />
           <label htmlFor="vendor-season"> HOURS/SEASON: </label>

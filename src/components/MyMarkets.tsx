@@ -81,15 +81,15 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
   private renderUserAttributes() {
     const rows = []
     for (const UserAttribute of this.state.userAttributes) {
-      rows.push(<tr key={UserAttribute.Name}>
-        <td>{UserAttribute.Name}</td>
-        <td>{UserAttribute.Value}</td>
+      rows.push(<div key={UserAttribute.Name}>
+        <h3>{UserAttribute.Name}</h3>
+        <p>{UserAttribute.Value}</p>
 
-      </tr>)
+      </div>)
     }
-    return <table>
-      <tbody>{rows}</tbody>
-    </table>
+    return <div>
+      {rows}
+    </div>
   }
 
 
@@ -98,7 +98,6 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
     let profileSpace
     if (this.props.user) {
       profileSpace = <div>
-        <h2> WELCOME {this.props.user?.userName} !</h2>
         {this.renderUserAttributes()}
         <br />
         <h2> MY MARKETS</h2>

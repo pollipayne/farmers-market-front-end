@@ -34,7 +34,7 @@ export class AuthService {
     } else {
       result.push({
         Name: `Welcome to your favorite markets ${user.userName}!`,
-        Value: "Click on a market below to see it's vendors!"
+        Value: "Add your favorite markets, search for markets near you, or click on a market you have favorited to see what vendors you loved! "
       })
     }
     return result
