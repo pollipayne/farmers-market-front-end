@@ -33,7 +33,7 @@ export class FindLocalMarkets extends React.Component<FindLocalMarketsProps, Fin
     products: '',
     schedule: '',
     localMarketNames: [],
-    localMarketDetails: []
+    localMarketDetails: [],
   }
 
 
@@ -48,20 +48,12 @@ export class FindLocalMarkets extends React.Component<FindLocalMarketsProps, Fin
 
   }
 
-  // private handleNameClick = async (event: SyntheticEvent) => {
-  //   event.preventDefault();
-  //   console.log(event)
-  //   console.log(event.target)
-  //   return event.target
-
-  // }
 
   renderMarketNames = () => {
     let nameList: any[] = []
-
     nameList = this.state.localMarketNames.map((marketName) => {
       return <li >
-        <LocalMarketName key={marketName.id} id={marketName.id} marketname={marketName.marketname} />
+        <LocalMarketName key={marketName.id} id={marketName.id} marketname={marketName.marketname} apiService={this.props.apiService} />
       </li>
     })
     return (
@@ -72,6 +64,7 @@ export class FindLocalMarkets extends React.Component<FindLocalMarketsProps, Fin
       </div>
     )
   }
+
 
 
   render() {
