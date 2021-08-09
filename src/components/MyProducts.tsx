@@ -127,7 +127,7 @@ export class MyProducts extends React.Component<MyProductProps, MyProductsState>
     }
 
     return (
-      <div> Users logged in home page
+      <div>
         {profileSpace}<br />
 
       </div>

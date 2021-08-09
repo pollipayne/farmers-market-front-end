@@ -45,26 +45,41 @@ export class LocalMarketName extends React.Component<FindLocalMarketsProps> {
     this.setState({ isClicked: true })
   }
 
+  componentUnClick = (event: SyntheticEvent) => {
+    event.preventDefault()
+    this.setState({ isClicked: false, marketDetails: [] })
+
+  }
+
   componentDidUpdate(prevProps: FindLocalMarketsProps, prevState: FindLocalMarketsState) {
 
     if (prevState.isClicked !== this.state.isClicked) {
-      console.log("im in the  component did update function")
-      const details = this.renderMarketDetails(this.props.id)
-      return details;
+      if (this.state.isClicked) {
+        console.log("im in the  component did update function")
+        const details = this.renderMarketDetails(this.props.id)
+        return details;
+      }
     }
-
   }
 
 
 
   render() {
+    let isButtonClicked
+    if (this.state.isClicked) {
+      isButtonClicked = <button data-tag={this.props.id} onClick={this.componentUnClick}> SHOW LESS </button>
+    } else {
+      isButtonClicked =
+        <button data-tag={this.props.id} onClick={this.componentClick}>SHOW MORE</button>
+
+    }
+
     return (
 
       <div className="market-name" >
         <h3>{this.props.marketname} </h3>
         {this.state.marketDetails}
-
-        <button data-tag={this.props.id} onClick={this.componentClick}>SHOW MORE</button>
+        {isButtonClicked}
       </div>
     )
   }
