@@ -1,6 +1,5 @@
 import React, { SyntheticEvent } from 'react';
 import { ApiService } from '../services/ApiService';
-import history from '../utils/history'
 
 
 

@@ -120,17 +120,13 @@ export class ApiService {
   }
 
   public async getLocalMarketInfo(localMarketId: string) {
-    const result: LocalMarketDetails[] = []
 
     let response = await axios.get(`http://search.ams.usda.gov/farmersmarkets/v1/data.svc/mktDetail?id=${localMarketId}`)
 
-    if (response) {
-      response.data.marketdetails.forEach((market: LocalMarketDetails) => {
-        result.push(market)
-      })
-    }
-    return result;
+    return response.data.marketdetails;
   }
+
+
 
 };
 
