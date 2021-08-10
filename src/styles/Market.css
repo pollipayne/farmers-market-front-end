@@ -1,0 +1,22 @@
+
+
+.single-market-ul {
+  list-style-type: none;
+}
+
+.single-market-name {
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.market-vendors {
+
+  border-color: darkslategray;
+  margin: 5px;
+}
+
+
+.delete-market {
+  border-color: darkslategrey;
+  margin: 5px;
+}

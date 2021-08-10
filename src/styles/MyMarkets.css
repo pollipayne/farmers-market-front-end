@@ -1,0 +1,21 @@
+
+
+
+
+
+.welcome-markets-header {
+  font-size: x-large;
+  text-align: center;
+}
+
+.welcome-markets-body {
+  font-size: large;
+  text-align: center;
+
+}
+
+.market-list-item {
+  list-style-type: none;
+  margin: 10px;
+
+}

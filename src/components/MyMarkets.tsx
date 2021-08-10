@@ -1,5 +1,6 @@
 
 import React from 'react';
+import '../styles/MyMarkets.css'
 import { MarketModel, UserAttribute, UserModel } from '../models/Models';
 import { AuthService } from '../services/AuthService';
 import { Link } from 'react-router-dom';
@@ -65,13 +66,13 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
 
 
     marketList = this.state.markets.map((market) => {
-      return <li >
+      return <li className='market-list-item'>
         <Market key={market.id} id={market.id} marketName={market.marketName} marketLocation={market.marketLocation} marketSeason={market.marketSeason} apiService={this.props.apiService} updateMarkets={this.updateMarkets} marketId={this.props.marketId} setMarketId={this.props.setMarketId} setMarketName={this.props.setMarketName} />
       </li>
     })
     return (
-      <div>
-        <ul>
+      <div className='market-list-wrapper'>
+        <ul className='market-unordered-list'>
           {marketList}
         </ul>
       </div>
@@ -82,8 +83,8 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
     const rows = []
     for (const UserAttribute of this.state.userAttributes) {
       rows.push(<div key={UserAttribute.Name}>
-        <h3>{UserAttribute.Name}</h3>
-        <p>{UserAttribute.Value}</p>
+        <h3 className='welcome-markets-header'>{UserAttribute.Name}</h3>
+        <p className='welcome-markets-body'>{UserAttribute.Value}</p>
 
       </div>)
     }
