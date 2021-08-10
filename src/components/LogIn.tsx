@@ -5,6 +5,7 @@ import { AuthService } from '../services/AuthService';
 import { ApiService } from '../services/ApiService';
 import history from '../utils/history';
 import { SignUpForm } from './SignUpForm';
+import { GoogleLogin } from 'react-google-login'
 
 
 interface LogInProps {
@@ -69,6 +70,26 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
     } else {
       this.setState({ isLoggedIn: false })
     }
+  }
+
+
+
+  responseGoogle = async (response: any) => {
+    const email = response.profileObj.email
+    const users = await this.getAllUsers();
+
+    this.setState({ loginAttempted: true })
+    const result = await this.props.authService.googleLogin(email, users);
+
+    if (result) {
+      this.setState({ isLoggedIn: true })
+      this.props.setUser(result)
+      this.props.user!.isLoggedIn = true
+      history.push('/mymarkets')
+
+    } else {
+      this.setState({ isLoggedIn: false })
+    }
 
   }
 
@@ -81,10 +102,12 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
         loginMessage = <label>Username or Password Incorrect </label>
       }
     }
+    const clientConfig = process.env.REACT_APP_CLIENT_ID as string
 
     return (
       <div>
-        <h2>Please Login: </h2>
+        <h2>Welcome! Please log in:  </h2>
+
         <form onSubmit={event => { this.handleSubmit(event) }}>
           <label htmlFor="user-email">Email: </label>
           <input name='user-email' value={this.state.email} onChange={event => { this.setUserEmail(event) }} /><br />
@@ -93,6 +116,19 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
           <button type='submit'> SUBMIT </button>
         </form>
         {loginMessage}
+
+
+        <div> Or log in with Google:</div>
+        <GoogleLogin
+          clientId={clientConfig}
+          buttonText='Login'
+          onSuccess={this.responseGoogle}
+          onFailure={this.responseGoogle}
+          cookiePolicy={'single_host_origin'} />
+
+
+
+
 
         <SignUpForm apiService={this.props.apiService} authService={this.props.authService} user={this.props.user} getAllUsers={this.getAllUsers} setUser={this.props.setUser}></SignUpForm>
 

@@ -23,6 +23,21 @@ export class AuthService {
 
   }
 
+  public googleLogin = async (email: string, allUsers: UserModel[]): Promise<UserModel | undefined> => {
+    let loggedInUser = undefined
+    allUsers.forEach(user => {
+      if (user.email === email) {
+        loggedInUser = user;
+      }
+    })
+    if (loggedInUser) {
+      return loggedInUser;
+    } else {
+      return undefined
+    }
+
+  }
+
 
   public async getUserAttributes(user: UserModel): Promise<UserAttribute[]> {
     const result: UserAttribute[] = [];
