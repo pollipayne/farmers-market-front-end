@@ -1,7 +1,7 @@
 import React, { SyntheticEvent } from 'react';
 import { ApiService } from '../services/ApiService';
 import history from '../utils/history'
-
+import '../styles/Market.css'
 
 
 
@@ -49,10 +49,10 @@ export class Market extends React.Component<MarketProps, MarketState> {
   render() {
     return (
       <div>
-        <ul>
-          <li>{this.props.marketName}</li>
-          <li>{this.props.marketLocation}</li>
-          <li>{this.props.marketSeason}</li>
+        <ul className='single-market-ul'>
+          <li className='single-market-name'>{this.props.marketName}</li>
+          <li className='single-market-location'>{this.props.marketLocation}</li>
+          <li className='single-market-season'>{this.props.marketSeason}</li>
         </ul>
         <button onClick={this.handleVendorClick} className='market-vendors' type='button'>See Vendors</button>
         <button onClick={this.handleDelete} className='delete-market' type='button'> Delete </button>
@@ -62,4 +62,3 @@ export class Market extends React.Component<MarketProps, MarketState> {
 }
 
 
-//on click redirect to vendors should go to markets/marketid/vendors? 

@@ -1,4 +1,4 @@
-import './App.css';
+import '../styles/App.css'
 import { MarketModel, UserModel } from '../models/Models'
 import { AuthService } from '../services/AuthService'
 import { LogIn } from './LogIn';
@@ -11,6 +11,7 @@ import { LogOut } from './LogOut';
 import { ApiService } from '../services/ApiService';
 import { MyVendors } from './MyVendors'
 import { MyProducts } from './MyProducts'
+import { Footer } from './Footer'
 
 
 
@@ -148,6 +149,7 @@ export class App extends React.Component<{}, AppState> {
                 <LogOut user={this.state.user} setUser={this.setUser} />
               </Route>
             </Switch>
+            <Footer></Footer>
           </div>
         </Router>
 
