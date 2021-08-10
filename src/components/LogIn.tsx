@@ -5,7 +5,6 @@ import { AuthService } from '../services/AuthService';
 import { ApiService } from '../services/ApiService';
 import history from '../utils/history';
 import { SignUpForm } from './SignUpForm';
-import ReactDOM from 'react-dom';
 import { GoogleLogin } from 'react-google-login'
 
 
@@ -75,20 +74,24 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
 
 
 
-  handeLogin = async (googleData: any) => {
-    const res = await fetch('/api/v1/auth/google', {
-      method: "POST",
-      body: JSON.stringify({
-        token: googleData.tokenId
-      }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    const data = await res.json()
-    console.log(data)
-  }
+  responseGoogle = async (response: any) => {
+    const email = response.profileObj.email
+    const users = await this.getAllUsers();
 
+    this.setState({ loginAttempted: true })
+    const result = await this.props.authService.googleLogin(email, users);
+
+    if (result) {
+      this.setState({ isLoggedIn: true })
+      this.props.setUser(result)
+      this.props.user!.isLoggedIn = true
+      history.push('/mymarkets')
+
+    } else {
+      this.setState({ isLoggedIn: false })
+    }
+
+  }
 
   render() {
     let loginMessage: any;
@@ -103,24 +106,29 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
 
     return (
       <div>
-        <h2>Please Login: </h2>
-        <GoogleLogin
-          clientId={clientConfig}
-          buttonText='Login'
-          onSuccess={this.handeLogin}
-          onFailure={this.handeLogin}
-          cookiePolicy={'single_host_origin'} />
+        <h2>Welcome! Please log in:  </h2>
 
-
-
-        {/* <form onSubmit={event => { this.handleSubmit(event) }}>
+        <form onSubmit={event => { this.handleSubmit(event) }}>
           <label htmlFor="user-email">Email: </label>
           <input name='user-email' value={this.state.email} onChange={event => { this.setUserEmail(event) }} /><br />
           <label htmlFor='user-password'>Password:  </label>
           <input name='user-password' value={this.state.password} onChange={event => { this.setPassword(event) }} type='password' /><br />
           <button type='submit'> SUBMIT </button>
-        </form> */}
+        </form>
         {loginMessage}
+
+
+        <div> Or log in with Google:</div>
+        <GoogleLogin
+          clientId={clientConfig}
+          buttonText='Login'
+          onSuccess={this.responseGoogle}
+          onFailure={this.responseGoogle}
+          cookiePolicy={'single_host_origin'} />
+
+
+
+
 
         <SignUpForm apiService={this.props.apiService} authService={this.props.authService} user={this.props.user} getAllUsers={this.getAllUsers} setUser={this.props.setUser}></SignUpForm>
 
