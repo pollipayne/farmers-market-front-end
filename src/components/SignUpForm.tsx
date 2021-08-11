@@ -4,6 +4,7 @@ import { ApiService } from '../services/ApiService';
 import { AuthService } from '../services/AuthService';
 import { MarketModel, UserModel } from '../models/Models'
 import history from '../utils/history'
+import '../styles/SignUpForm.css'
 
 
 
@@ -75,19 +76,20 @@ export class SignUpForm extends React.Component<SignUpFormProps, SignUpFormState
 
   render() {
     return (
-      <form>
-        <div>
-          <h2> Sign Up! </h2>
-          <label htmlFor='user-signup-name'> USER NAME: </label>
+
+      <div className='sign-up-wrapper'>
+        <form className='sign-up-form'>
+          <h2> Not a member yet? Sign Up! </h2>
+          <label htmlFor='user-signup-name'> USER NAME </label>
           <input name='user-signup-name' onChange={this.onNameChange} type="text" value={this.state.userName} /><br />
-          <label htmlFor="signup-email"> EMAIL ADDRESS : </label>
+          <label htmlFor="signup-email"> EMAIL ADDRESS  </label>
           <input name="signup-email" onChange={this.onEmailChange} value={this.state.email} /><br />
           <label htmlFor='signup-password'> PASSWORD </label>
           <input name='signup-password' onChange={this.onPasswordChange} value={this.state.password} /><br />
           <button onClick={this.handleSubmit} type='submit'> SUBMIT </button>
+        </form>
+      </div>
 
-        </div>
-      </form>
     )
   }
 }

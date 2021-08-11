@@ -5,23 +5,35 @@
 font-family: 'Forum', cursive;
 font-family: 'Marck Script', cursive; */
 
-body {
+html {
   margin: 15;
+  height: 100%;
 font-family: 'EB Garamond', serif;
+background-image: url('../assets/market1.jpg');
+background-size: cover;
+background-repeat: no-repeat;
 
 } 
 
-
-
 .wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-flow: wrap;
+  justify-content: center;
+  align-content: space-between;
   margin: auto;
   width: 90%;
+
 }
 
 /* Add a black background color to the top navigation */
 .navbar {
   background-color: #333;
   overflow: hidden;
+  width: 100%;
+  align-self: center;
+  border-radius: 5px;
 }
 
 /* Style the links inside the navigation bar */
@@ -40,8 +52,19 @@ font-family: 'EB Garamond', serif;
   color: black;
 }
 
-/* Add a color to the active/current link */
-.navbar a.active {
-  background-color: #4CAF50;
-  color: white;
+
+.footer {
+  border-radius: 5px;
+  align-self: center;
+  text-align: center;
+  align-items: flex-end;
+  width: 100%;
+  background-color: #333;
+  overflow: hidden;
+  color: #f2f2f2;
+  position: relative;
+  overflow: hidden;
+  margin-top: auto;
+
 }
+
