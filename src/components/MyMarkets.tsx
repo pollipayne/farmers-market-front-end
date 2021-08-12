@@ -23,6 +23,7 @@ interface MyMarketProps {
   setMarketId: (number: number) => void;
   marketName: string | undefined
   setMarketName: (string: string) => void;
+  setPathName: (string: string) => void;
 }
 
 
@@ -38,6 +39,7 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
       this.setState({
         userAttributes: userAttrs
       })
+      this.props.setPathName('wrapper-markets')
     }
     this.updateMarkets();
   }
@@ -65,13 +67,14 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
     let marketList: any[] = []
 
 
+
     marketList = this.state.markets.map((market) => {
       return <li className='market-list-item'>
         <Market key={market.id} id={market.id} marketName={market.marketName} marketLocation={market.marketLocation} marketSeason={market.marketSeason} apiService={this.props.apiService} updateMarkets={this.updateMarkets} marketId={this.props.marketId} setMarketId={this.props.setMarketId} setMarketName={this.props.setMarketName} />
       </li>
     })
     return (
-      <div className='market-list-wrapper'>
+      <div>
         <ul className='market-unordered-list'>
           {marketList}
         </ul>
@@ -98,19 +101,22 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
 
     let profileSpace
     if (this.props.user) {
-      profileSpace = <div>
-        {this.renderUserAttributes()}
-        <br />
-        <h2> MY MARKETS</h2>
-        {this.renderMarkets()}
-        <section>
-          <NewMarketForm apiService={this.props.apiService} updateMarkets={this.updateMarkets} user={this.props.user}></NewMarketForm>
-          <FindLocalMarkets apiService={this.props.apiService}></FindLocalMarkets>
-        </section>
+      profileSpace =
+        <div>{this.renderUserAttributes()}
+          <section className='my-markets-page-wrapper'>
+
+            <div className='my-markets-list-wrapper'>
+              <h2> MY MARKETS</h2>
+              {this.renderMarkets()}
+            </div>
+            <section className='new-market-form-wrapper'>
+              <NewMarketForm apiService={this.props.apiService} updateMarkets={this.updateMarkets} user={this.props.user}></NewMarketForm>
+            </section>
+          </section>
 
 
 
-      </div>
+        </div>
     } else {
       profileSpace = <div>
         Please <Link to='/login'>Login</Link>

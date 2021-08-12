@@ -6,6 +6,7 @@ import { ApiService } from '../services/ApiService';
 import history from '../utils/history';
 import { SignUpForm } from './SignUpForm';
 import { GoogleLogin } from 'react-google-login'
+import '../styles/LogIn.css'
 
 
 interface LogInProps {
@@ -13,6 +14,7 @@ interface LogInProps {
   apiService: ApiService
   setUser: (user: UserModel) => void
   user: UserModel | undefined
+  setPathName: (string: string) => void
 }
 interface LogInState {
   userName: string,
@@ -36,6 +38,12 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
     loginAttempted: false,
     isLoggedIn: false,
     markets: []
+  }
+
+  async componentDidMount() {
+
+    this.props.setPathName('wrapper-home')
+
   }
 
   private setUserName(event: customEvent) {
@@ -105,26 +113,30 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
     const clientConfig = process.env.REACT_APP_CLIENT_ID as string
 
     return (
-      <div>
-        <h2>Welcome! Please log in:  </h2>
+      <div className='login-page'>
+        <h1>Welcome! Please log in:  </h1>
 
-        <form onSubmit={event => { this.handleSubmit(event) }}>
-          <label htmlFor="user-email">Email: </label>
-          <input name='user-email' value={this.state.email} onChange={event => { this.setUserEmail(event) }} /><br />
-          <label htmlFor='user-password'>Password:  </label>
-          <input name='user-password' value={this.state.password} onChange={event => { this.setPassword(event) }} type='password' /><br />
-          <button type='submit'> SUBMIT </button>
-        </form>
-        {loginMessage}
+        <div className='log-in-options-wrapper'>
+          <form className='log-in-form' onSubmit={event => { this.handleSubmit(event) }}>
+            <label className='log-in-email' htmlFor="user-email">EMAIL </label>
+            <input className='log-in-email-input' name='user-email' value={this.state.email} onChange={event => { this.setUserEmail(event) }} /><br />
+            <label className='log-in-password' htmlFor='user-password'>PASSWORD  </label>
+            <input className='log-in-password-input' name='user-password' value={this.state.password} onChange={event => { this.setPassword(event) }} type='password' /><br />
+            <button className='log-in-submit' type='submit'> SUBMIT </button>
+          </form>
+          {loginMessage}
 
 
-        <div> Or log in with Google:</div>
-        <GoogleLogin
-          clientId={clientConfig}
-          buttonText='Login'
-          onSuccess={this.responseGoogle}
-          onFailure={this.responseGoogle}
-          cookiePolicy={'single_host_origin'} />
+          <div className='google-options'>
+            <h3>Or log in with Google</h3>
+            <GoogleLogin
+              clientId={clientConfig}
+              buttonText='Login'
+              onSuccess={this.responseGoogle}
+              onFailure={this.responseGoogle}
+              cookiePolicy={'single_host_origin'} />
+          </div>
+        </div>
 
 
 
