@@ -27,13 +27,24 @@ export class NavBar extends React.Component<NavBarProps, NavBarState> {
 
   render() {
 
-    return (
-      <div className="navbar">
-        <Link to='/login'> HOME </Link>
-        <Link to='/logout' onClick={this.changeLogState}> LOGOUT </Link>
+    if (this.props.user?.isLoggedIn) {
+      return (
+        <div className="navbar">
+          <Link to='/mymarkets'> HOME </Link>
+          <Link to='/findmarkets'> FIND LOCAL MARKETS </Link>
+          <Link to='/logout' onClick={this.changeLogState}> LOGOUT </Link>
+        </div>
+      )
+    } else {
+      return (
+        <div className="navbar">
+          <Link to='/login'> HOME </Link>
+          <Link to='/findmarkets'> FIND LOCAL MARKETS </Link>
+          <Link to='/logout' onClick={this.changeLogState}> LOGOUT </Link>
+        </div>
 
 
-      </div>
-    )
+      )
+    }
   }
 }

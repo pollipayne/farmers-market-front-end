@@ -12,6 +12,7 @@ import { ApiService } from '../services/ApiService';
 import { MyVendors } from './MyVendors'
 import { MyProducts } from './MyProducts'
 import { Footer } from './Footer'
+import { FindLocalMarkets } from './FindLocalMarkets'
 
 
 
@@ -23,6 +24,7 @@ interface AppState {
   marketName: string | undefined
   vendorName: string | undefined
   vendorId: number | undefined
+  currentPathName: string
 };
 
 export class App extends React.Component<{}, AppState> {
@@ -44,7 +46,8 @@ export class App extends React.Component<{}, AppState> {
       marketId: undefined,
       vendorId: undefined,
       marketName: '',
-      vendorName: ''
+      vendorName: '',
+      currentPathName: 'wrapper-home'
     }
 
     this.setUser = this.setUser.bind(this)
@@ -73,6 +76,11 @@ export class App extends React.Component<{}, AppState> {
     this.setState({ vendorName: newVendorName })
   }
 
+  private setPathName = (newPathName: string) => {
+    this.setState({ currentPathName: newPathName })
+
+  }
+
 
   private logUserOut = () => {
     this.setUser({
@@ -87,7 +95,7 @@ export class App extends React.Component<{}, AppState> {
 
   render() {
     return (
-      <div className="wrapper">
+      <div className={this.state.currentPathName}>
         <Router history={history}>
           <NavBar
             user={this.state.user}
@@ -98,15 +106,20 @@ export class App extends React.Component<{}, AppState> {
                 authService={this.authService}
                 setUser={this.setUser}
                 apiService={this.apiService}
-                user={this.state.user} />
+                user={this.state.user}
+                setPathName={this.setPathName} />
             </Route>
             <Route exact path='/login'>
               <LogIn
                 authService={this.authService}
                 setUser={this.setUser}
                 apiService={this.apiService}
-                user={this.state.user}>
+                user={this.state.user}
+                setPathName={this.setPathName}>
               </LogIn>
+            </Route>
+            <Route exact path="/findmarkets">
+              <FindLocalMarkets apiService={this.apiService}></FindLocalMarkets>
             </Route>
             <Route exact path='/mymarkets'>
               <MyMarkets
@@ -116,7 +129,8 @@ export class App extends React.Component<{}, AppState> {
                 marketId={this.state.marketId}
                 setMarketId={this.setMarketId}
                 marketName={this.state.marketName}
-                setMarketName={this.setMarketName} />
+                setMarketName={this.setMarketName}
+                setPathName={this.setPathName} />
             </Route>
             <Route exact path='/vendors'>
               <MyVendors

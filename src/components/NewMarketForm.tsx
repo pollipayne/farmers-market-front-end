@@ -2,7 +2,7 @@
 import React, { SyntheticEvent } from 'react';
 import { ApiService } from '../services/ApiService';
 import { UserModel } from '../models/Models'
-
+import '../styles/NewMarketForm.css'
 interface MarketFormProps {
   apiService: ApiService
   updateMarkets: () => void;
@@ -55,7 +55,7 @@ export class NewMarketForm extends React.Component<MarketFormProps, NewMarketSta
   render() {
     return (
       <form>
-        <div>
+        <div className="new-market-form">
           <h2> Add A New Market </h2>
           <label htmlFor='market-name'> NAME: </label>
           <input name='market-name' onChange={this.onNameChange} type="text" value={this.state.marketName} /><br />

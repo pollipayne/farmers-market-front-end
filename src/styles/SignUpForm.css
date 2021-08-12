@@ -5,3 +5,48 @@
   flex-direction: column;
   align-items: center;
 }
+
+
+
+.sign-up-submit {
+  font-family: inherit;
+  background-color: #f2f2f2;
+  font-size: large;
+  border: 2px solid #6f794e
+}
+
+.sign-up-submit:hover {
+  background-color: #dddd
+}
+
+.sign-up-submit:active {
+  transform: translateY(4px);
+}
+
+.user-signup-name {
+  border: 2px solid #dddd;
+  outline: none;
+}
+
+.user-signup-name:focus {
+  border: 2px solid #6f794e
+}
+
+
+.user-signup-email {
+  border: 2px solid #dddd;
+  outline: none;
+}
+
+.user-signup-email:focus {
+  border: 2px solid #6f794e
+}
+
+.user-signup-password {
+  border: 2px solid #dddd;
+  outline: none;
+}
+
+.user-signup-password:focus {
+  border: 2px solid #6f794e
+}

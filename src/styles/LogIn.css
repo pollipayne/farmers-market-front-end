@@ -56,3 +56,40 @@
   margin-bottom: 50px;
 
 }
+
+.log-in-submit {
+
+  font-family: inherit;
+  background-color: #f2f2f2;
+  font-size: large;
+  border: 2px solid #6f794e
+
+}
+
+.log-in-submit:hover {
+  background-color: #dddd
+}
+
+.log-in-submit:active {
+  transform: translateY(4px);
+}
+
+
+.log-in-email-input {
+  border: 2px solid #dddd;
+  outline: none;
+}
+
+.log-in-email-input:focus {
+  border: 3px solid #6f794e
+}
+
+
+.log-in-password-input {
+  border: 2px solid #dddd;
+  outline: none;
+}
+
+.log-in-password-input:focus {
+  border: 3px solid #6f794e
+}

@@ -14,6 +14,7 @@ interface LogInProps {
   apiService: ApiService
   setUser: (user: UserModel) => void
   user: UserModel | undefined
+  setPathName: (string: string) => void
 }
 interface LogInState {
   userName: string,
@@ -37,6 +38,12 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
     loginAttempted: false,
     isLoggedIn: false,
     markets: []
+  }
+
+  async componentDidMount() {
+
+    this.props.setPathName('wrapper-home')
+
   }
 
   private setUserName(event: customEvent) {
