@@ -83,7 +83,7 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
 
 
   responseGoogle = async (response: any) => {
-    if (response.profileObj.email) {
+    if (response.profileObj) {
       const email = response.profileObj.email
       const users = await this.getAllUsers();
       this.setState({ loginAttempted: true })
