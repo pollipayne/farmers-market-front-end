@@ -2,6 +2,7 @@
   "name": "my-farmers-market",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en.-B-Yl1giugs.O/m=auth2/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AGLTcCONWTFvihGrQAtWDoeeH_UUFfCMQg/cb=gapi.loaded_0?le=ili,ipu",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
