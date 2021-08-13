@@ -83,21 +83,26 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
 
 
   responseGoogle = async (response: any) => {
-    const email = response.profileObj.email
-    const users = await this.getAllUsers();
+    // if (response.profileObj) {
+    if (response) {
+      const email = response.profileObj.email
+      const users = await this.getAllUsers();
+      this.setState({ loginAttempted: true })
+      const result = await this.props.authService.googleLogin(email, users);
+      if (result) {
+        this.setState({ isLoggedIn: true })
+        this.props.setUser(result)
+        this.props.user!.isLoggedIn = true
+        history.push('/mymarkets')
 
-    this.setState({ loginAttempted: true })
-    const result = await this.props.authService.googleLogin(email, users);
+      } else {
+        this.setState({ isLoggedIn: false })
+      }
 
-    if (result) {
-      this.setState({ isLoggedIn: true })
-      this.props.setUser(result)
-      this.props.user!.isLoggedIn = true
-      history.push('/mymarkets')
-
-    } else {
-      this.setState({ isLoggedIn: false })
     }
+
+
+
 
   }
 
