@@ -58,12 +58,12 @@ export class NewMarketForm extends React.Component<MarketFormProps, NewMarketSta
         <div className="new-market-form">
           <h2> Add A New Market </h2>
           <label htmlFor='market-name'> NAME: </label>
-          <input name='market-name' onChange={this.onNameChange} type="text" value={this.state.marketName} /><br />
+          <input className="market-name-input" name='market-name' onChange={this.onNameChange} type="text" value={this.state.marketName} /><br />
           <label htmlFor="market-location"> LOCATION: </label>
-          <input name="market-location" onChange={this.onLocationChange} value={this.state.marketLocation} /><br />
+          <input className="market-location-input" name="market-location" onChange={this.onLocationChange} value={this.state.marketLocation} /><br />
           <label htmlFor='market-hours'> HOURS/SEASON </label>
-          <input name='market-hours' onChange={this.onHoursChange} value={this.state.marketSeason} /><br />
-          <button onClick={this.handleSubmit} type='submit'> SUBMIT </button>
+          <input className="market-hours-input" name='market-hours' onChange={this.onHoursChange} value={this.state.marketSeason} /><br />
+          <button className="new-market-submit" onClick={this.handleSubmit} type='submit'> SUBMIT </button>
 
         </div>
       </form>

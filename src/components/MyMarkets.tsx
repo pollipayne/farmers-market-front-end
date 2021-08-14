@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import { ApiService } from '../services/ApiService';
 import { Market } from '../components/Market';
 import { NewMarketForm } from './NewMarketForm';
-import { FindLocalMarkets } from './FindLocalMarkets';
 
 
 interface MyMarketsState {
@@ -106,7 +105,7 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
           <section className='my-markets-page-wrapper'>
 
             <div className='my-markets-list-wrapper'>
-              <h2> MY MARKETS</h2>
+              <h2 className="my-markets-header"> MY MARKETS</h2>
               {this.renderMarkets()}
             </div>
             <section className='new-market-form-wrapper'>
