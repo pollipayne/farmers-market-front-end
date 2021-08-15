@@ -156,11 +156,12 @@ export class App extends React.Component<{}, AppState> {
                 history={history}
                 vendorId={this.state.vendorId}
                 setVendorId={this.setVendorId}
-                vendorName={this.state.vendorName} />
+                vendorName={this.state.vendorName}
+                setPathName={this.setPathName} />
 
             </Route>
             <Route>
-              <LogOut user={this.state.user} setUser={this.setUser} />
+              <LogOut user={this.state.user} setUser={this.setUser} setPathName={this.setPathName} />
             </Route>
           </Switch>
           <Footer></Footer>

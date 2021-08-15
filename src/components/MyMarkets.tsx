@@ -22,7 +22,7 @@ interface MyMarketProps {
   setMarketId: (number: number) => void;
   marketName: string | undefined
   setMarketName: (string: string) => void;
-  setPathName: (string: string) => void;
+  setPathName: (pathname: string) => void;
 }
 
 

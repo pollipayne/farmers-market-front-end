@@ -25,6 +25,7 @@ interface MyProductProps {
   vendorId: number | undefined
   setVendorId: (number: number | undefined) => void;
   vendorName: string | undefined
+  setPathName: (pathname: string) => void;
 }
 
 
@@ -43,8 +44,9 @@ export class MyProducts extends React.Component<MyProductProps, MyProductsState>
       this.setState({
         userAttributes: userAttrs
       })
+      this.props.setPathName('wrapper-products')
     }
-    console.log(this.props.vendorId)
+
     this.updateProducts();
   }
 

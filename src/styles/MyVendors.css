@@ -2,9 +2,14 @@
 
 .welcome-vendors-header {
   font-size: 30px;
-  text-align: center;
+  text-align: justify;
   font-weight: bolder;
-  margin: 0px;
+  margin-left: 850px;
+  width: 25%;
+}
+
+.back-to-markets-button {
+  margin-left: 860px;
 }
 
 .my-vendors-page-wrapper {
@@ -23,21 +28,14 @@
   text-align: center;
   flex-wrap: wrap;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: space-around;
   width: 50%;
   height: 650px;
+  margin-left: 50px;
   background-color:rgb(51,51, 51, .7);
 }
 
-.new-vendor-form-wrapper {
-  color: #f2f2f2;
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  align-items: center;
-  width: 30%;
-  background-color:rgb(51,51, 51, .7);
-}
+
 
 .vendor-unordered-list {
   display: flex;
@@ -48,10 +46,5 @@
   height: 400px;
 }
 
-.vendor-list-item {
-  flex-basis: 20%;
-  padding-bottom: 10px;
-  list-style: none;
-  align-self: center;
-}
+
 

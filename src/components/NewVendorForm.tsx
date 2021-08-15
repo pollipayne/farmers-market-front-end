@@ -2,6 +2,7 @@
 import React, { SyntheticEvent } from 'react';
 import { MarketModel, ProductModel } from '../models/Models';
 import { ApiService } from '../services/ApiService';
+import "../styles/NewVendorForm.css"
 
 interface VendorFormProps {
   apiService: ApiService
@@ -52,16 +53,13 @@ export class NewVendorForm extends React.Component<VendorFormProps, NewVendorSta
 
   render() {
     return (
-      <form>
-        <div>
-          <h2> Add A New Favorite Vendor </h2>
-          <label htmlFor='vendor-name'> NAME: </label>
-          <input name='vendor-name' onChange={this.onNameChange} type="text" value={this.state.vendorName} /><br />
-          <label htmlFor="vendor-season"> HOURS/SEASON: </label>
-          <input name="vendor-season" onChange={this.onSeasonChange} value={this.state.vendorSeason} /><br />
-          <button onClick={this.handleSubmit} type='submit'> SUBMIT </button>
-
-        </div>
+      <form className="new-vendor-form-items">
+        <h2> Add A New Favorite Vendor </h2>
+        <label htmlFor='vendor-name'> NAME: </label>
+        <input name="vendor-name" className="vendor-name-input" onChange={this.onNameChange} type="text" value={this.state.vendorName} /><br />
+        <label htmlFor="vendor-season"> HOURS/SEASON: </label>
+        <input className="vendor-season-input" onChange={this.onSeasonChange} value={this.state.vendorSeason} /><br />
+        <button onClick={this.handleSubmit} type='submit'> SUBMIT </button>
       </form>
     )
   }

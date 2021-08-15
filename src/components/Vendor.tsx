@@ -1,6 +1,7 @@
 import React, { SyntheticEvent } from 'react';
 import { ApiService } from '../services/ApiService';
 import history from '../utils/history'
+import '../styles/Vendor.css'
 
 
 
@@ -49,9 +50,9 @@ export class Vendor extends React.Component<VendorProps> {
   render() {
     return (
       <div>
-        <ul>
-          <li>{this.props.vendorName}</li>
-          <li>{this.props.vendorSeason}</li>
+        <ul className="vendor-list-item">
+          <li className="vendor-name">{this.props.vendorName}</li>
+          <li className="vendor-season">{this.props.vendorSeason}</li>
         </ul>
         <button onClick={this.handleProductClick} className='vendor-products' type='button'>See Products</button>
         <button onClick={this.handleDelete} className='delete-vendor' type='button'> Delete </button>

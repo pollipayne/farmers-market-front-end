@@ -102,21 +102,23 @@ export class MyVendors extends React.Component<MyVendorProps, MyVendorsState>{
 
     let profileSpace
     if (this.props.user) {
-      profileSpace = <div className="my-vendors-page-wrapper">
+      profileSpace = <>
         <h2 className="welcome-vendors-header"> Oh hey, {this.props.user?.userName}- these are your favorite vendors from {this.props.marketName} </h2>
-        <button onClick={this.goBackToMarkets}>BACK TO MY MARKETS </button>
-        <div className="my-vendors-list-wrapper">
-          <h2> MY VENDORS</h2>
-          {this.renderVendors()}
+        <button className="back-to-markets-button" onClick={this.goBackToMarkets}>BACK TO MY MARKETS </button>
+
+        <div className="my-vendors-page-wrapper">
+
+          <div className="my-vendors-list-wrapper">
+            <h2> MY VENDORS</h2>
+            {this.renderVendors()}
+          </div>
+          <section className="new-vendor-form-wrapper">
+
+            <NewVendorForm apiService={this.props.apiService} updateVendors={this.updateVendors} marketId={this.props.marketId} setMarketId={this.props.setMarketId}></NewVendorForm>
+          </section>
+
         </div>
-        <section className="new-vendor-form-wrapper">
-
-          <NewVendorForm apiService={this.props.apiService} updateVendors={this.updateVendors} marketId={this.props.marketId} setMarketId={this.props.setMarketId}></NewVendorForm>
-        </section>
-
-
-
-      </div>
+      </>
     } else {
       profileSpace = <div>
         Please <Link to='/login'>Login</Link>
