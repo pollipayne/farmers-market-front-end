@@ -21,6 +21,8 @@
   font: inherit;
   border-color: darkslategray;
   margin: 5px;
+  margin-left: 42px;
+  font-weight: bold;
 }
 
 
@@ -28,4 +30,7 @@
   font: inherit;
   border-color: darkslategrey;
   margin: 5px;
+  font-weight: bold;
 }
+
+

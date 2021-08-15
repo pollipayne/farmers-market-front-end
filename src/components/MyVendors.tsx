@@ -1,12 +1,13 @@
 
 import React, { SyntheticEvent } from 'react';
-import { VendorModel, UserAttribute, UserModel, MarketModel } from '../models/Models';
+import { VendorModel, UserAttribute, UserModel } from '../models/Models';
 import { AuthService } from '../services/AuthService';
 import { Link } from 'react-router-dom';
 import { ApiService } from '../services/ApiService';
 import { Vendor } from '../components/Vendor';
 import { NewVendorForm } from './NewVendorForm';
 import history from '../utils/history'
+import '../styles/MyVendors.css'
 
 
 
@@ -30,8 +31,8 @@ interface MyVendorProps {
   vendorName: string | undefined
   setVendorId: (number: number | undefined) => void;
   setVendorName: (string: string) => void;
+  setPathName: (string: string) => void;
 }
-
 
 export class MyVendors extends React.Component<MyVendorProps, MyVendorsState>{
   state: MyVendorsState = {
@@ -48,6 +49,7 @@ export class MyVendors extends React.Component<MyVendorProps, MyVendorsState>{
       this.setState({
         userAttributes: userAttrs
       })
+      this.props.setPathName('wrapper-vendors')
     }
     this.updateVendors();
   }
@@ -75,13 +77,13 @@ export class MyVendors extends React.Component<MyVendorProps, MyVendorsState>{
     let vendorList: any[] = []
 
     vendorList = this.state.vendors.map((vendor) => {
-      return <li >
+      return <li className="vendor-list-item">
         <Vendor key={vendor.id} id={vendor.id} vendorName={vendor.vendorName} vendorSeason={vendor.vendorSeason} apiService={this.props.apiService} updateVendors={this.updateVendors} vendorId={this.props.vendorId} setVendorId={this.props.setVendorId} setVendorName={this.props.setVendorName} />
       </li>
     })
     return (
       <div>
-        <ul>
+        <ul className="vendor-unordered-list">
           {vendorList}
         </ul>
       </div>
@@ -100,12 +102,14 @@ export class MyVendors extends React.Component<MyVendorProps, MyVendorsState>{
 
     let profileSpace
     if (this.props.user) {
-      profileSpace = <div>
-        <h2> Oh hey, {this.props.user?.userName}- these are your favorite vendors from {this.props.marketName} </h2>
+      profileSpace = <div className="my-vendors-page-wrapper">
+        <h2 className="welcome-vendors-header"> Oh hey, {this.props.user?.userName}- these are your favorite vendors from {this.props.marketName} </h2>
         <button onClick={this.goBackToMarkets}>BACK TO MY MARKETS </button>
-        <h2> MY VENDORS</h2>
-        {this.renderVendors()}
-        <section>
+        <div className="my-vendors-list-wrapper">
+          <h2> MY VENDORS</h2>
+          {this.renderVendors()}
+        </div>
+        <section className="new-vendor-form-wrapper">
 
           <NewVendorForm apiService={this.props.apiService} updateVendors={this.updateVendors} marketId={this.props.marketId} setMarketId={this.props.setMarketId}></NewVendorForm>
         </section>

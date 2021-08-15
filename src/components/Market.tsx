@@ -48,7 +48,7 @@ export class Market extends React.Component<MarketProps, MarketState> {
 
   render() {
     return (
-      <div>
+      <div >
         <ul className='single-market-ul'>
           <li className='single-market-name'>{this.props.marketName}</li>
           <li className='single-market-location'>{this.props.marketLocation}</li>

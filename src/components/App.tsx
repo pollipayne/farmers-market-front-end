@@ -145,7 +145,8 @@ export class App extends React.Component<{}, AppState> {
                 setVendorName={this.setVendorName}
                 setMarketId={this.setMarketId}
                 vendorId={this.state.vendorId}
-                setVendorId={this.setVendorId} />
+                setVendorId={this.setVendorId}
+                setPathName={this.setPathName} />
             </Route>
             <Route exact path='/products'>
               <MyProducts
