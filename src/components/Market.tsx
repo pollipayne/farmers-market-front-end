@@ -22,20 +22,19 @@ interface MarketState {
 }
 
 
-
 export class Market extends React.Component<MarketProps, MarketState> {
 
   state: MarketState = {
     id: undefined
   }
 
+
   private handleDelete = async (event: SyntheticEvent) => {
     event.preventDefault();
     await this.props.apiService?.deleteMarket(this.props.id as number)
-
     this.props.updateMarkets();
-
   }
+
 
   private handleVendorClick = async (event: SyntheticEvent) => {
     if (this.props.id) {
@@ -45,6 +44,7 @@ export class Market extends React.Component<MarketProps, MarketState> {
     event.preventDefault();
     history.push('/vendors')
   }
+
 
   render() {
     return (
@@ -59,6 +59,8 @@ export class Market extends React.Component<MarketProps, MarketState> {
       </div>
     )
   }
+
+
 }
 
 

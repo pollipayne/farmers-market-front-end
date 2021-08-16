@@ -1,4 +1,4 @@
-import React, { ReactHTML, SyntheticEvent } from 'react';
+import React, { SyntheticEvent } from 'react';
 import { LocalMarketModel } from '../models/Models';
 import { ApiService } from '../services/ApiService';
 import { LocalMarketDetails } from './LocalMarketDetails';
@@ -38,6 +38,7 @@ export class FindLocalMarkets extends React.Component<FindLocalMarketsProps, Fin
     localMarketDetails: [],
   }
 
+
   async componentDidMount() {
     this.props.setPathName('wrapper-find')
   }
@@ -47,11 +48,11 @@ export class FindLocalMarkets extends React.Component<FindLocalMarketsProps, Fin
     this.setState({ zipSearch: event.currentTarget.value })
   }
 
+
   private handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
     const marketNames = await this.props.apiService.findLocalMarkets(this.state.zipSearch)
     this.setState({ localMarketNames: marketNames })
-
   }
 
 
@@ -72,9 +73,7 @@ export class FindLocalMarkets extends React.Component<FindLocalMarketsProps, Fin
   }
 
 
-
   render() {
-
     return (
       <div className="local-markets-page-wrapper">
         <h2 className="find-markets-header"> What markets are near you? </h2>
@@ -89,11 +88,9 @@ export class FindLocalMarkets extends React.Component<FindLocalMarketsProps, Fin
           {this.renderMarketNames()}
         </div>
       </div>
-
     )
-
-
   }
+
 
 }
 

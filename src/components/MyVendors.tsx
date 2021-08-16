@@ -11,8 +11,6 @@ import '../styles/MyVendors.css'
 
 
 
-
-
 interface MyVendorsState {
   userAttributes: UserAttribute[],
   vendors: VendorModel[]
@@ -34,13 +32,13 @@ interface MyVendorProps {
   setPathName: (string: string) => void;
 }
 
+
 export class MyVendors extends React.Component<MyVendorProps, MyVendorsState>{
+
   state: MyVendorsState = {
     userAttributes: [],
     vendors: []
   }
-
-
 
 
   async componentDidMount() {
@@ -54,10 +52,10 @@ export class MyVendors extends React.Component<MyVendorProps, MyVendorsState>{
     this.updateVendors();
   }
 
+
   updateVendors = async () => {
     const vendorsMatchMarketId: VendorModel[] = []
     const vendors = await this.props.apiService.getVendors();
-
     if (this.props.marketId) {
       vendors.forEach(vendor => {
         vendor.markets.forEach(market => {
@@ -75,11 +73,12 @@ export class MyVendors extends React.Component<MyVendorProps, MyVendorsState>{
 
   private renderVendors() {
     let vendorList: any[] = []
-
     vendorList = this.state.vendors.map((vendor) => {
-      return <li className="vendor-list-item">
-        <Vendor key={vendor.id} id={vendor.id} vendorName={vendor.vendorName} vendorSeason={vendor.vendorSeason} apiService={this.props.apiService} updateVendors={this.updateVendors} vendorId={this.props.vendorId} setVendorId={this.props.setVendorId} setVendorName={this.props.setVendorName} />
-      </li>
+      return (
+        <li className="vendor-list-item">
+          <Vendor key={vendor.id} id={vendor.id} vendorName={vendor.vendorName} vendorSeason={vendor.vendorSeason} apiService={this.props.apiService} updateVendors={this.updateVendors} vendorId={this.props.vendorId} setVendorId={this.props.setVendorId} setVendorName={this.props.setVendorName} />
+        </li>
+      )
     })
     return (
       <div>
@@ -90,33 +89,27 @@ export class MyVendors extends React.Component<MyVendorProps, MyVendorsState>{
     )
   }
 
+
   private goBackToMarkets = async (event: SyntheticEvent) => {
     event.preventDefault();
     history.goBack();
-
   }
 
 
-
   render() {
-
     let profileSpace
     if (this.props.user) {
       profileSpace = <>
         <h2 className="welcome-vendors-header"> Oh hey, {this.props.user?.userName}- these are your favorite vendors from {this.props.marketName} </h2>
         <button className="back-to-markets-button" onClick={this.goBackToMarkets}>BACK TO MY MARKETS </button>
-
         <div className="my-vendors-page-wrapper">
-
           <div className="my-vendors-list-wrapper">
             <h2> MY VENDORS</h2>
             {this.renderVendors()}
           </div>
           <section className="new-vendor-form-wrapper">
-
             <NewVendorForm apiService={this.props.apiService} updateVendors={this.updateVendors} marketId={this.props.marketId} setMarketId={this.props.setMarketId}></NewVendorForm>
           </section>
-
         </div>
       </>
     } else {
@@ -124,12 +117,12 @@ export class MyVendors extends React.Component<MyVendorProps, MyVendorsState>{
         Please <Link to='/login'>Login</Link>
       </div>
     }
-
     return (
       <div>
         {profileSpace}<br />
-
       </div>
     )
   }
+
+
 }

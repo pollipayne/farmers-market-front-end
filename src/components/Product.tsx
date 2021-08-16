@@ -3,7 +3,6 @@ import { ApiService } from '../services/ApiService';
 import '../styles/Products.css';
 
 
-
 interface ProductProps {
   id?: number | undefined
   productName: string,
@@ -19,19 +18,17 @@ interface ProductState {
 }
 
 
-
 export class Product extends React.Component<ProductProps, ProductState> {
 
   state: ProductState = {
     id: undefined
   }
 
+
   private handleDelete = async (event: SyntheticEvent) => {
     event.preventDefault();
     await this.props.apiService?.deleteProduct(this.props.id as number)
-
     this.props.updateProducts();
-
   }
 
 
@@ -42,9 +39,10 @@ export class Product extends React.Component<ProductProps, ProductState> {
           <li className="product-name">{this.props.productName}</li>
           <li className="product-season">{this.props.productSeason}</li>
           <button className="product-delete" onClick={this.handleDelete} type='button'> Delete </button>
-
         </ul>
       </div>
     )
   }
+
+
 }

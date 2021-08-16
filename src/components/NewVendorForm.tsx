@@ -20,14 +20,13 @@ interface NewVendorState {
 }
 
 
-
 export class NewVendorForm extends React.Component<VendorFormProps, NewVendorState> {
+
   state: NewVendorState = {
     vendorName: '',
     vendorSeason: '',
     markets: [],
     products: []
-
   }
 
 
@@ -35,21 +34,21 @@ export class NewVendorForm extends React.Component<VendorFormProps, NewVendorSta
     this.setState({ vendorName: event.currentTarget.value })
   }
 
+
   private onSeasonChange = (event: React.FormEvent<HTMLInputElement>) => {
     this.setState({ vendorSeason: event.currentTarget.value })
   }
 
 
-
   private handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
     if (this.props.marketId) {
-      const result = await this.props.apiService.addNewVendor(this.state, this.props.marketId)
+      await this.props.apiService.addNewVendor(this.state, this.props.marketId)
       this.props.updateVendors();
       this.setState({ vendorName: '', vendorSeason: '' })
     }
-
   }
+
 
   render() {
     return (
@@ -63,5 +62,6 @@ export class NewVendorForm extends React.Component<VendorFormProps, NewVendorSta
       </form>
     )
   }
+
 
 }

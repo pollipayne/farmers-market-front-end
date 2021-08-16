@@ -1,10 +1,6 @@
 import { UserAttribute, UserModel } from '../models/Models';
 
 
-
-
-
-
 export class AuthService {
 
 
@@ -20,8 +16,8 @@ export class AuthService {
     } else {
       return undefined
     }
-
   }
+
 
   public googleLogin = async (email: string, allUsers: UserModel[]): Promise<UserModel | undefined> => {
     let loggedInUser = undefined
@@ -35,7 +31,6 @@ export class AuthService {
     } else {
       return undefined
     }
-
   }
 
 
@@ -53,6 +48,7 @@ export class AuthService {
       })
     }
     return result
-
   }
-}
+
+
+};

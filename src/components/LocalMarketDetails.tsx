@@ -5,15 +5,11 @@ import '../styles/LocalMarketDetails.css'
 
 
 interface FindLocalMarketDetailsProps {
-
   address: string
   googlelink: string
   products: string
   schedule: string
-
 }
-
-
 
 
 export class LocalMarketDetails extends React.Component<FindLocalMarketDetailsProps> {
@@ -21,12 +17,9 @@ export class LocalMarketDetails extends React.Component<FindLocalMarketDetailsPr
 
   private splitString = () => {
     const newScheduleString = this.props.schedule.split(';')
-    console.log(newScheduleString[0])
-
     return newScheduleString[0]
-
-
   }
+
 
   render() {
     this.splitString()

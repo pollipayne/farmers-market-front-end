@@ -40,36 +40,38 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
     markets: []
   }
 
+
   async componentDidMount() {
-
     this.props.setPathName('wrapper-home')
-
   }
+
 
   private setUserName(event: customEvent) {
     this.setState({ userName: event.target.value })
-
   }
+
 
   private setUserEmail(event: customEvent) {
     this.setState({ email: event.target.value })
   }
 
+
   private setPassword(event: customEvent) {
     this.setState({ password: event.target.value })
   }
+
 
   private getAllUsers = async (): Promise<UserModel[]> => {
     const result = await this.props.apiService.getUsers();
     return result;
   }
 
+
   private handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
     const users = await this.getAllUsers();
     this.setState({ loginAttempted: true })
     const result = await this.props.authService.login(this.state.email, this.state.password, users)
-
     if (result) {
       this.setState({ isLoggedIn: true })
       this.props.setUser(result)
@@ -81,9 +83,7 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
   }
 
 
-
   responseGoogle = async (response: any) => {
-    // if (response.profileObj) {
     if (response) {
       const email = response.profileObj.email
       const users = await this.getAllUsers();
@@ -94,17 +94,12 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
         this.props.setUser(result)
         this.props.user!.isLoggedIn = true
         history.push('/mymarkets')
-
       } else {
         this.setState({ isLoggedIn: false })
       }
-
     }
-
-
-
-
   }
+
 
   render() {
     let loginMessage: any;
@@ -116,7 +111,6 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
       }
     }
     const clientConfig = process.env.REACT_APP_CLIENT_ID as string
-
     return (
       <div className='login-page'>
         <h1>Welcome! Please log in:  </h1>
@@ -130,8 +124,6 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
             <button className='log-in-submit' type='submit'> SUBMIT </button>
           </form>
           {loginMessage}
-
-
           <div className='google-options'>
             <h3>Or log in with Google</h3>
             <GoogleLogin
@@ -142,15 +134,10 @@ export class LogIn extends React.Component<LogInProps, LogInState> {
               cookiePolicy={'single_host_origin'} />
           </div>
         </div>
-
-
-
-
-
         <SignUpForm apiService={this.props.apiService} authService={this.props.authService} user={this.props.user} getAllUsers={this.getAllUsers} setUser={this.props.setUser}></SignUpForm>
-
       </div>
     )
   }
+
 
 }

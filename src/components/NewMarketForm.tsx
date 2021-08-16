@@ -3,6 +3,8 @@ import React, { SyntheticEvent } from 'react';
 import { ApiService } from '../services/ApiService';
 import { UserModel } from '../models/Models'
 import '../styles/NewMarketForm.css'
+
+
 interface MarketFormProps {
   apiService: ApiService
   updateMarkets: () => void;
@@ -18,8 +20,8 @@ interface NewMarketState {
 }
 
 
-
 export class NewMarketForm extends React.Component<MarketFormProps, NewMarketState> {
+
   state: NewMarketState = {
     marketName: '',
     marketLocation: '',
@@ -32,24 +34,25 @@ export class NewMarketForm extends React.Component<MarketFormProps, NewMarketSta
     this.setState({ marketName: event.currentTarget.value })
   }
 
+
   private onLocationChange = (event: React.FormEvent<HTMLInputElement>) => {
     this.setState({ marketLocation: event.currentTarget.value })
   }
+
 
   private onHoursChange = (event: React.FormEvent<HTMLInputElement>) => {
     this.setState({ marketSeason: event.currentTarget.value })
   }
 
+
   private handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
     if (this.props.user.id) {
-      const result = await this.props.apiService.addNewMarket(this.state, this.props.user.id)
+      await this.props.apiService.addNewMarket(this.state, this.props.user.id)
       this.props.updateMarkets();
       this.setState({ marketName: '', marketLocation: '', marketSeason: '' })
     }
-
   }
-
 
 
   render() {
@@ -64,10 +67,10 @@ export class NewMarketForm extends React.Component<MarketFormProps, NewMarketSta
           <label htmlFor='market-hours'> HOURS/SEASON </label>
           <input className="market-hours-input" name='market-hours' onChange={this.onHoursChange} value={this.state.marketSeason} /><br />
           <button className="new-market-submit" onClick={this.handleSubmit} type='submit'> SUBMIT </button>
-
         </div>
       </form>
     )
   }
+
 
 }
