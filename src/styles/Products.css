@@ -1,0 +1,23 @@
+.product-list-item {
+  padding-bottom: 15px;
+  list-style: none;
+  font-weight: bolder;
+  text-align: center;
+  width: 110px;
+  justify-self: stretch;
+  align-self: end;
+}
+
+
+.product-name {
+  font-size: x-large;
+}
+
+.product-season {
+  font-size: large;
+}
+
+.product-delete {
+  margin-top: 10px;
+
+}

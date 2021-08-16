@@ -3,11 +3,13 @@ import { LocalMarketModel } from '../models/Models';
 import { ApiService } from '../services/ApiService';
 import { LocalMarketDetails } from './LocalMarketDetails';
 import { LocalMarketName } from './LocalMarketName'
+import '../styles/FindLocalMarkets.css'
 
 
 
 interface FindLocalMarketsProps {
   apiService: ApiService
+  setPathName: (pathname: string) => void;
 
 }
 
@@ -36,6 +38,10 @@ export class FindLocalMarkets extends React.Component<FindLocalMarketsProps, Fin
     localMarketDetails: [],
   }
 
+  async componentDidMount() {
+    this.props.setPathName('wrapper-find')
+  }
+
 
   private onZipChange = (event: React.FormEvent<HTMLInputElement>) => {
     this.setState({ zipSearch: event.currentTarget.value })
@@ -58,7 +64,7 @@ export class FindLocalMarkets extends React.Component<FindLocalMarketsProps, Fin
     })
     return (
       <div>
-        <ul>
+        <ul className="market-name-unordered-list">
           {nameList}
         </ul>
       </div>
@@ -70,18 +76,19 @@ export class FindLocalMarkets extends React.Component<FindLocalMarketsProps, Fin
   render() {
 
     return (
-      <form>
-        <div>
-          <h2> What markets are near you? </h2>
-          <label htmlFor='zip-search'> ZIP CODE SEARCH:  </label>
-          <input name='zip-search' onChange={this.onZipChange} type='text' value={this.state.zipSearch} /><br />
-          <button onClick={this.handleSubmit} type='submit'> SHOW ME </button>
-          <div>
-            {this.renderMarketNames()}
-          </div>
+      <div className="local-markets-page-wrapper">
+        <h2 className="find-markets-header"> What markets are near you? </h2>
+        <form className="local-markets-form-wrapper">
 
+
+          <label className="zip-search" htmlFor='zip-search'> ZIP CODE SEARCH:  </label>
+          <input name='zip-search' onChange={this.onZipChange} type='text' value={this.state.zipSearch} /><br />
+          <button className="show-markets" onClick={this.handleSubmit} type='submit'>  SEARCH </button>
+        </form>
+        <div className="scroll-market-names">
+          {this.renderMarketNames()}
         </div>
-      </form>
+      </div>
 
     )
 

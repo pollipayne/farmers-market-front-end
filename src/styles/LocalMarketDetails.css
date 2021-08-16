@@ -1,0 +1,42 @@
+
+.market-details-unordered {
+  list-style: none;
+  background-color:rgba(112, 108, 108, 0.7);
+  display: flex;
+  flex-direction: column;
+  font-size: large;
+  justify-content: center;
+  margin-right: 40px;
+  margin-bottom: 15px;
+
+}
+
+.market-details-unordered > * {
+  margin-right: 35px;
+}
+
+.market-details-unordered h4 {
+  font-size: x-large;
+  margin-bottom: 0px;
+}
+
+li a {
+  font-size: larger;
+  font-weight: bolder;
+  text-decoration: none;
+  color: #9e7b5d;
+}
+
+li a:hover {
+  text-decoration: underline;
+}
+
+.last-child {
+  margin-bottom: 15px;
+}
+
+.market-name {
+  margin-right: 40px;
+}
+
+

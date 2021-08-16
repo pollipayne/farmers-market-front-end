@@ -1,0 +1,40 @@
+
+.find-markets-header {
+  font-size: xx-large;
+}
+
+.local-markets-page-wrapper { 
+  color: #f2f2f2;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  width: 60%;
+  height: 550px;
+  background-color:rgb(51,51, 51, .7);
+}
+
+.local-markets-form-wrapper {
+
+  display: flex;
+  flex-flow: column;
+  margin-left: 300px;
+  align-items: center;
+  width: 30%;
+
+}
+
+.show-markets {
+  margin-bottom: 10px;
+}
+
+.scroll-market-names {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  text-align: center;
+  padding: 20px;
+}
+
+
+.market-name-unordered-list {
+  list-style: none;
+}

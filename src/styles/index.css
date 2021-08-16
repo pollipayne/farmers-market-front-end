@@ -23,7 +23,7 @@ background-color: #333;
   align-content: space-between;
   margin: auto;
   width: 100%;
-  background-image: url('../assets/market1.jpg');
+  background-image: url('../assets/produce8.jpg');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -84,7 +84,22 @@ background-color: #333;
   align-content: space-between;
   margin: auto;
   width: 100%;
-  background-image: url('../assets/produce7.jpg');
+  background-image: url('../assets/produce5.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.wrapper-find {
+  min-height: 100vh;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-flow: wrap;
+  justify-content: center;
+  align-content: space-between;
+  margin: auto;
+  width: 100%;
+  background-image: url('../assets/goat4.jpg');
   background-size: cover;
   background-repeat: no-repeat;
 }

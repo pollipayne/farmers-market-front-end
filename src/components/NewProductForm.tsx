@@ -2,6 +2,7 @@
 import React, { SyntheticEvent } from 'react';
 import { VendorModel } from '../models/Models';
 import { ApiService } from '../services/ApiService';
+import "../styles/NewProductForm.css"
 
 interface ProductFormProps {
   apiService: ApiService
@@ -50,16 +51,16 @@ export class NewProductForm extends React.Component<ProductFormProps, NewProduct
 
   render() {
     return (
-      <form>
-        <div>
-          <h2> Add A New Product </h2>
-          <label htmlFor='vendor-name'> NAME: </label>
-          <input name='vendor-name' onChange={this.onNameChange} type="text" value={this.state.productName} /><br />
-          <label htmlFor="vendor-season"> SEASON: </label>
-          <input name="vendor-season" onChange={this.onSeasonChange} value={this.state.productSeason} /><br />
-          <button onClick={this.handleSubmit} type='submit'> SUBMIT </button>
+      <form className="new-product-form-items">
 
-        </div>
+        <h2> Add A New Product </h2>
+        <label htmlFor='product-name'> NAME: </label>
+        <input className="product-name-input" name='product-name' onChange={this.onNameChange} type="text" value={this.state.productName} /><br />
+        <label htmlFor="product-season"> SEASON: </label>
+        <input className="product-season-input" name="product-season" onChange={this.onSeasonChange} value={this.state.productSeason} /><br />
+        <button onClick={this.handleSubmit} type='submit'> SUBMIT </button>
+
+
       </form>
     )
   }

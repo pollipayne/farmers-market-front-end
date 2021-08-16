@@ -1,6 +1,6 @@
 import React, { SyntheticEvent } from 'react';
 import { ApiService } from '../services/ApiService';
-
+import '../styles/Products.css';
 
 
 
@@ -38,11 +38,12 @@ export class Product extends React.Component<ProductProps, ProductState> {
   render() {
     return (
       <div>
-        <ul>
-          <li>{this.props.productName}</li>
-          <li>{this.props.productSeason}</li>
+        <ul className="product-list-item">
+          <li className="product-name">{this.props.productName}</li>
+          <li className="product-season">{this.props.productSeason}</li>
+          <button className="product-delete" onClick={this.handleDelete} type='button'> Delete </button>
+
         </ul>
-        <button onClick={this.handleDelete} className='delete-product' type='button'> Delete </button>
       </div>
     )
   }

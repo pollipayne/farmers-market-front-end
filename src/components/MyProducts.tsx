@@ -7,6 +7,7 @@ import { ApiService } from '../services/ApiService';
 import { Product } from './Product';
 import { NewProductForm } from './NewProductForm'
 import history from '../utils/history'
+import '../styles/MyProducts.css'
 
 
 
@@ -82,13 +83,13 @@ export class MyProducts extends React.Component<MyProductProps, MyProductsState>
     let productList: any[] = []
 
     productList = this.state.products.map((product) => {
-      return <li >
+      return <li className="product-list-item">
         <Product key={product.id} id={product.id} productName={product.productName} productSeason={product.productSeason} apiService={this.props.apiService} updateProducts={this.updateProducts} vendorId={this.props.vendorId} setVendorId={this.props.setVendorId} />
       </li>
     })
     return (
       <div>
-        <ul>
+        <ul className="product-unordered-list">
           {productList}
         </ul>
       </div>
@@ -108,20 +109,24 @@ export class MyProducts extends React.Component<MyProductProps, MyProductsState>
     let profileSpace
 
     if (this.props.user) {
-      profileSpace = <div>
-        <h2> Oh hey, {this.props.user?.userName}- these are your favorite products from {this.props.vendorName} </h2>
-        <button onClick={this.goBackToVendors}>BACK TO MY VENDORS </button>
+      profileSpace = <>
+        <h2 className="welcome-products-header" > Oh hey, {this.props.user?.userName}- these are your favorite products from {this.props.vendorName} </h2>
+        <button className="back-to-vendors-button" onClick={this.goBackToVendors}>BACK TO MY VENDORS </button>
 
-        <h2> MY PRODUCTS</h2>
-        {this.renderProducts()}
-        <section>
+        <div className="my-products-page-wrapper">
+          <div className="my-products-list-wrapper">
+            <h2> MY PRODUCTS</h2>
+            {this.renderProducts()}
+          </div>
+          <section className="new-product-form-wrapper">
 
-          <NewProductForm apiService={this.props.apiService} updateProducts={this.updateProducts} vendorId={this.props.vendorId} setVendorId={this.props.setVendorId}></NewProductForm>
-        </section>
+            <NewProductForm apiService={this.props.apiService} updateProducts={this.updateProducts} vendorId={this.props.vendorId} setVendorId={this.props.setVendorId}></NewProductForm>
+          </section>
 
 
 
-      </div>
+        </div>
+      </>
     } else {
       profileSpace = <div>
         Please <Link to='/login'>Login</Link>
