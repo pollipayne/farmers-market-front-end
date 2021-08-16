@@ -4,8 +4,6 @@ import history from '../utils/history'
 import '../styles/Vendor.css'
 
 
-
-
 interface VendorProps {
   id?: number | undefined
   vendorName: string,
@@ -16,10 +14,10 @@ interface VendorProps {
   setVendorId: (number: number) => void;
   setVendorName: (string: string) => void;
 }
+
 interface VendorState {
   id?: number | undefined
 }
-
 
 
 export class Vendor extends React.Component<VendorProps> {
@@ -28,13 +26,13 @@ export class Vendor extends React.Component<VendorProps> {
     id: undefined
   }
 
+
   private handleDelete = async (event: SyntheticEvent) => {
     event.preventDefault();
     await this.props.apiService?.deleteVendor(this.props.id as number)
-
     this.props.updateVendors();
-
   }
+
 
   private handleProductClick = async (event: SyntheticEvent) => {
     if (this.props.id) {
@@ -44,7 +42,6 @@ export class Vendor extends React.Component<VendorProps> {
     event.preventDefault();
     history.push('/products')
   }
-
 
 
   render() {
@@ -59,4 +56,6 @@ export class Vendor extends React.Component<VendorProps> {
       </div>
     )
   }
+
+
 }

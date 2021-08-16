@@ -8,14 +8,12 @@ import '../styles/SignUpForm.css'
 
 
 
-
 interface SignUpFormProps {
   apiService: ApiService
   authService: AuthService
   user: UserModel | undefined
   getAllUsers: () => Promise<UserModel[]>
   setUser: (user: UserModel) => void
-
 }
 
 interface SignUpFormState {
@@ -25,9 +23,7 @@ interface SignUpFormState {
   isLoggedIn: boolean,
   id?: number | undefined
   markets: MarketModel[]
-
 }
-
 
 
 export class SignUpForm extends React.Component<SignUpFormProps, SignUpFormState> {
@@ -41,18 +37,20 @@ export class SignUpForm extends React.Component<SignUpFormProps, SignUpFormState
   }
 
 
-
   private onNameChange = (event: React.FormEvent<HTMLInputElement>) => {
     this.setState({ userName: event.currentTarget.value })
   }
+
 
   private onEmailChange = (event: React.FormEvent<HTMLInputElement>) => {
     this.setState({ email: event.currentTarget.value })
   }
 
+
   private onPasswordChange = (event: React.FormEvent<HTMLInputElement>) => {
     this.setState({ password: event.currentTarget.value })
   }
+
 
   private handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
@@ -60,11 +58,8 @@ export class SignUpForm extends React.Component<SignUpFormProps, SignUpFormState
       return;
     } else {
       const result = await this.props.apiService.addNewUser(this.state)
-      console.log(result)
       this.setState({ userName: '', email: '', password: '' })
-
       const allUsers = await this.props.getAllUsers();
-
       const logInResult = await this.props.authService.login(result.email, result.password, allUsers)
       if (logInResult) {
         this.setState({ isLoggedIn: true })
@@ -80,7 +75,6 @@ export class SignUpForm extends React.Component<SignUpFormProps, SignUpFormState
 
   render() {
     return (
-
       <div className='sign-up-wrapper'>
         <form className='sign-up-form'>
           <h2> Not a member yet? Sign Up! </h2>
@@ -93,7 +87,8 @@ export class SignUpForm extends React.Component<SignUpFormProps, SignUpFormState
           <button className='sign-up-submit' onClick={this.handleSubmit} type='submit'> SUBMIT </button>
         </form>
       </div>
-
     )
   }
+
+
 }

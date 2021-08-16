@@ -32,6 +32,7 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
     markets: []
   }
 
+
   async componentDidMount() {
     if (this.props.user) {
       const userAttrs = await this.props.authService.getUserAttributes(this.props.user);
@@ -43,10 +44,10 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
     this.updateMarkets();
   }
 
+
   updateMarkets = async () => {
     const usersMarkets: MarketModel[] = []
     const markets = await this.props.apiService.getMarkets();
-
     if (this.props.user) {
       markets.forEach(market => {
         market.users.forEach(user => {
@@ -64,13 +65,12 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
 
   private renderMarkets() {
     let marketList: any[] = []
-
-
-
     marketList = this.state.markets.map((market) => {
-      return <li className='market-list-item'>
-        <Market key={market.id} id={market.id} marketName={market.marketName} marketLocation={market.marketLocation} marketSeason={market.marketSeason} apiService={this.props.apiService} updateMarkets={this.updateMarkets} marketId={this.props.marketId} setMarketId={this.props.setMarketId} setMarketName={this.props.setMarketName} />
-      </li>
+      return (
+        <li className='market-list-item'>
+          <Market key={market.id} id={market.id} marketName={market.marketName} marketLocation={market.marketLocation} marketSeason={market.marketSeason} apiService={this.props.apiService} updateMarkets={this.updateMarkets} marketId={this.props.marketId} setMarketId={this.props.setMarketId} setMarketName={this.props.setMarketName} />
+        </li>
+      )
     })
     return (
       <div>
@@ -81,14 +81,17 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
     )
   }
 
+
   private renderUserAttributes() {
     const rows = []
     for (const UserAttribute of this.state.userAttributes) {
-      rows.push(<div key={UserAttribute.Name}>
-        <h3 className='welcome-markets-header'>{UserAttribute.Name}</h3>
-        <p className='welcome-markets-body'>{UserAttribute.Value}</p>
+      rows.push(
+        <div key={UserAttribute.Name}>
+          <h3 className='welcome-markets-header'>{UserAttribute.Name}</h3>
+          <p className='welcome-markets-body'>{UserAttribute.Value}</p>
 
-      </div>)
+        </div>
+      )
     }
     return <div>
       {rows}
@@ -97,7 +100,6 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
 
 
   render() {
-
     let profileSpace
     if (this.props.user) {
       profileSpace =
@@ -112,16 +114,12 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
               <NewMarketForm apiService={this.props.apiService} updateMarkets={this.updateMarkets} user={this.props.user}></NewMarketForm>
             </section>
           </section>
-
-
-
         </div>
     } else {
       profileSpace = <div>
         Please <Link to='/login'>Login</Link>
       </div>
     }
-
     return (
       <div>
         {profileSpace}<br />
@@ -129,4 +127,6 @@ export class MyMarkets extends React.Component<MyMarketProps, MyMarketsState>{
       </div>
     )
   }
+
+
 }

@@ -17,7 +17,6 @@ import { FindLocalMarkets } from './FindLocalMarkets'
 
 
 
-
 interface AppState {
   user: UserModel
   marketId: number | undefined
@@ -26,6 +25,7 @@ interface AppState {
   vendorId: number | undefined
   currentPathName: string
 };
+
 
 export class App extends React.Component<{}, AppState> {
 
@@ -49,36 +49,39 @@ export class App extends React.Component<{}, AppState> {
       vendorName: '',
       currentPathName: 'wrapper-home'
     }
-
     this.setUser = this.setUser.bind(this)
-
   }
-  private setUser(user: UserModel) {
 
+
+  private setUser(user: UserModel) {
     this.setState({
       user: user
     })
   }
 
+
   private setMarketId = (newMarketId: number | undefined) => {
     this.setState({ marketId: newMarketId })
   }
+
 
   private setVendorId = (newVendorId: number | undefined) => {
     this.setState({ vendorId: newVendorId })
   }
 
+
   private setMarketName = (newMarketName: string | undefined) => {
     this.setState({ marketName: newMarketName })
   }
+
 
   private setVendorName = (newVendorName: string | undefined) => {
     this.setState({ vendorName: newVendorName })
   }
 
+
   private setPathName = (newPathName: string) => {
     this.setState({ currentPathName: newPathName })
-
   }
 
 
@@ -92,6 +95,7 @@ export class App extends React.Component<{}, AppState> {
       markets: []
     })
   }
+
 
   render() {
     return (
@@ -119,7 +123,10 @@ export class App extends React.Component<{}, AppState> {
               </LogIn>
             </Route>
             <Route exact path="/findmarkets">
-              <FindLocalMarkets setPathName={this.setPathName} apiService={this.apiService}></FindLocalMarkets>
+              <FindLocalMarkets
+                setPathName={this.setPathName}
+                apiService={this.apiService}>
+              </FindLocalMarkets>
             </Route>
             <Route exact path='/mymarkets'>
               <MyMarkets
@@ -161,13 +168,13 @@ export class App extends React.Component<{}, AppState> {
 
             </Route>
             <Route>
-              <LogOut user={this.state.user} setUser={this.setUser} setPathName={this.setPathName} />
+              <LogOut user={this.state.user}
+                setUser={this.setUser}
+                setPathName={this.setPathName} />
             </Route>
           </Switch>
           <Footer></Footer>
         </Router>
-
-
       </div>
     )
   };

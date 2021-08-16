@@ -9,12 +9,10 @@ export interface UserModel {
   markets: MarketModel[]
 }
 
-
 export interface UserAttribute {
   Name: string,
   Value: string
 }
-
 
 export interface MarketModel {
   marketName: string,
@@ -38,7 +36,6 @@ export interface VendorModel {
   products: ProductModel[]
   id?: number
 }
-
 
 export interface ProductModel {
   productName: string,
