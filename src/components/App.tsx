@@ -119,7 +119,7 @@ export class App extends React.Component<{}, AppState> {
               </LogIn>
             </Route>
             <Route exact path="/findmarkets">
-              <FindLocalMarkets apiService={this.apiService}></FindLocalMarkets>
+              <FindLocalMarkets setPathName={this.setPathName} apiService={this.apiService}></FindLocalMarkets>
             </Route>
             <Route exact path='/mymarkets'>
               <MyMarkets

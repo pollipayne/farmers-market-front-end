@@ -1,5 +1,6 @@
 
 import React from 'react';
+import '../styles/LocalMarketDetails.css'
 
 
 
@@ -30,14 +31,14 @@ export class LocalMarketDetails extends React.Component<FindLocalMarketDetailsPr
   render() {
     this.splitString()
     return (
-      <div>
-        <ul>
+      <div className="popup-container">
+        <ul className="market-details-unordered">
           <h4>Address</h4>
           <li><a href={this.props.googlelink}>{this.props.address}</a></li>
           <h4>Products:</h4>
           <li>{this.props.products}</li>
           <h4>Schedule:</h4>
-          <li>{this.splitString()}</li>
+          <li className="last-child">{this.splitString()}</li>
         </ul>
       </div>
     )

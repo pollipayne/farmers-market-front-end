@@ -2,6 +2,7 @@
 import React, { SyntheticEvent } from 'react';
 import { LocalMarketDetails } from './LocalMarketDetails';
 import { ApiService } from '../services/ApiService'
+import "../styles/LocalMarketName.css"
 
 
 
@@ -25,7 +26,7 @@ export class LocalMarketName extends React.Component<FindLocalMarketsProps> {
 
 
   renderMarketDetails = async (marketId: string | null) => {
-    console.log('im in the  render details function!')
+
     const updateMarketDetails: any[] = []
     const singleMarket = await this.props.apiService.getLocalMarketInfo(this.props.id)
     console.log(singleMarket)
@@ -55,7 +56,6 @@ export class LocalMarketName extends React.Component<FindLocalMarketsProps> {
 
     if (prevState.isClicked !== this.state.isClicked) {
       if (this.state.isClicked) {
-        console.log("im in the  component did update function")
         const details = this.renderMarketDetails(this.props.id)
         return details;
       }
@@ -63,21 +63,20 @@ export class LocalMarketName extends React.Component<FindLocalMarketsProps> {
   }
 
 
-
   render() {
     let isButtonClicked
     if (this.state.isClicked) {
-      isButtonClicked = <button data-tag={this.props.id} onClick={this.componentUnClick}> SHOW LESS </button>
+      isButtonClicked = <button className="show-less-button" data-tag={this.props.id} onClick={this.componentUnClick}> SHOW LESS </button>
     } else {
       isButtonClicked =
-        <button data-tag={this.props.id} onClick={this.componentClick}>SHOW MORE</button>
+        <button className="show-more-button" data-tag={this.props.id} onClick={this.componentClick}>SHOW MORE</button>
 
     }
 
     return (
 
       <div className="market-name" >
-        <h3>{this.props.marketname} </h3>
+        <h3 className='market-name-header'>{this.props.marketname} </h3>
         {this.state.marketDetails}
         {isButtonClicked}
       </div>
