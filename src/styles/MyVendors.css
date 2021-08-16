@@ -1,0 +1,50 @@
+
+
+.welcome-vendors-header {
+  font-size: 30px;
+  text-align: justify;
+  font-weight: bolder;
+  margin-left: 850px;
+  width: 25%;
+}
+
+.back-to-markets-button {
+  margin-left: 860px;
+}
+
+.my-vendors-page-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+
+.my-vendors-list-wrapper {
+  color: #f2f2f2;
+  display: flex;
+  text-align: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: space-around;
+  width: 50%;
+  height: 650px;
+  margin-left: 50px;
+  background-color:rgb(51,51, 51, .7);
+}
+
+
+
+.vendor-unordered-list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 0px;
+  padding: 0px;
+  height: 400px;
+}
+
+
+

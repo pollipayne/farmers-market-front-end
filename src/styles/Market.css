@@ -5,18 +5,32 @@
 }
 
 .single-market-name {
-  font-size: larger;
+  font-size: x-large;
   font-weight: bolder;
 }
 
-.market-vendors {
+.single-market-location {
+  font-size: large;
+}
 
+.single-market-season {
+  font-size: large;
+}
+
+.market-vendors {
+  font: inherit;
   border-color: darkslategray;
   margin: 5px;
+  margin-left: 42px;
+  font-weight: bold;
 }
 
 
 .delete-market {
+  font: inherit;
   border-color: darkslategrey;
   margin: 5px;
+  font-weight: bold;
 }
+
+

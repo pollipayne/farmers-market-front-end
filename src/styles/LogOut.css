@@ -1,0 +1,24 @@
+
+
+
+.log-out-wrapper {
+  font-size: xx-large;
+  margin-bottom: 450px;
+  margin-right: 15px;
+  font-weight: bolder;
+}
+
+.link-to-login {
+margin-left: 75px;
+font-weight: bolder;
+text-decoration: none;
+}
+
+.link-to-login:visited {
+  color: #84697a;
+}
+
+.link-to-login:hover {
+  color: #5f9f7d;
+
+}
