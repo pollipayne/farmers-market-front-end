@@ -99,8 +99,8 @@ export class MyVendors extends React.Component<MyVendorProps, MyVendorsState>{
   render() {
     let profileSpace
     if (this.props.user) {
-      profileSpace = <>
-        <h2 className="welcome-vendors-header"> Oh hey, {this.props.user?.userName}- these are your favorite vendors from {this.props.marketName} </h2>
+      profileSpace = <div className="vendors-outside-page-wrapper" >
+        <h2 className="welcome-vendors-header"> {this.props.user?.userName}- check out your favorite vendors from {this.props.marketName} </h2>
         <button className="back-to-markets-button" onClick={this.goBackToMarkets}>BACK TO MY MARKETS </button>
         <div className="my-vendors-page-wrapper">
           <div className="my-vendors-list-wrapper">
@@ -111,7 +111,7 @@ export class MyVendors extends React.Component<MyVendorProps, MyVendorsState>{
             <NewVendorForm apiService={this.props.apiService} updateVendors={this.updateVendors} marketId={this.props.marketId} setMarketId={this.props.setMarketId}></NewVendorForm>
           </section>
         </div>
-      </>
+      </div>
     } else {
       profileSpace = <div>
         Please <Link to='/login'>Login</Link>
