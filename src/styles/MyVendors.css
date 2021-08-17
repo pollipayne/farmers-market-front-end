@@ -1,22 +1,46 @@
 
+.vendors-outside-page-wrapper {
+  display: grid;
+  grid-template-rows: 10% 5% 80%;
+  grid-template-columns: 2fr 2fr;
 
+
+}
 .welcome-vendors-header {
   font-size: 30px;
-  text-align: justify;
+  justify-self: end;
   font-weight: bolder;
-  margin-left: 850px;
-  width: 25%;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+
 }
 
+
+
 .back-to-markets-button {
-  margin-left: 860px;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  width: 225px;
+  height: 30px;
+  justify-self: end;
+
+
 }
 
 .my-vendors-page-wrapper {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  width: 70%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
+  margin: auto;
   justify-content: space-between;
 }
 
@@ -29,9 +53,9 @@
   flex-wrap: wrap;
   flex-direction: column;
   align-items: space-around;
-  width: 50%;
+  width: 60%;
   height: 650px;
-  margin-left: 50px;
+  /* margin-left: 50px; */
   background-color:rgb(51,51, 51, .7);
 }
 
