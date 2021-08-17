@@ -2,8 +2,8 @@ import { MarketModel, VendorModel, UserModel, ProductModel, LocalMarketModel } f
 import axios from 'axios';
 
 
-const url_path = "http://localhost:3001"
-// const url_path = "https://cryptic-fjord-56843.herokuapp.com"
+// const url_path = "http://localhost:3001"
+const url_path = "https://cryptic-fjord-56843.herokuapp.com"
 
 
 export class ApiService {
