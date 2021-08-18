@@ -1,4 +1,5 @@
 
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -8,11 +9,12 @@
 
 
 
+
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
   <a href="https://github.com/pollipayne/farmers-market-front-end">
-    <img src="..//src/assets/landingpage.png" alt="Logo" width="400" height="330">
+    <img src="./src/assets/landingpage.png" alt="Logo" width="400" height="330">
   </a>
 
   <h3 align="center"> My Farmers Market </h3>
@@ -65,7 +67,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 <p align="center" >
- <img src="..//src/assets/marketpage.png" alt="projectscreenshot" width="500" height="330">
+ <img src="./src/assets/marketpage.png" alt="projectscreenshot" width="500" height="330">
  </p>
 
 Built on top of a RESTful API composed in TypeScript on an Express framework with PSQL and TypeOrm database management.  Users (whether logged in or not) can search for local farmers markets via zip-code query.  Logged in users can add favorited markets to their database, and for each market associate a favorited vendor located within that market.  For each vendor model, users can also assign favorite products, and the season those products are available. 
