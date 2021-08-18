@@ -77,11 +77,11 @@ Built on top of a RESTful API composed in TypeScript on an Express framework wit
 
 ### Built With
 
-* [TypeScript]('https://www.npmjs.com/package/typescript')
-* [NodeJS]('https://nodejs.org/en/download/')
-* [npm]('https://www.npmjs.com/package/npm')
-* [React]('https://www.npmjs.com/package/react')
-* [Axios]('https://www.npmjs.com/package/axios')
+* [TypeScript](https://www.npmjs.com/package/typescript)
+* [NodeJS](https://nodejs.org/en/download/)
+* [npm](https://www.npmjs.com/package/npm)
+* [React](https://www.npmjs.com/package/react)
+* [Axios](https://www.npmjs.com/package/axios)
 
 
 
@@ -155,7 +155,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Brittney Payne - [@LinkedIn]("https://www.linkedin.com/in/brittney-payne-1824701b7/") - brpayne598@gmail.com
+Brittney Payne - [@LinkedIn](https://www.linkedin.com/in/brittney-payne-1824701b7/) - brpayne598@gmail.com
 
 Project Link: [https://github.com/pollipayne/farmers-market-front-end](https://github.com/pollipayne/farmers-market-front-end)
 
@@ -164,9 +164,9 @@ Project Link: [https://github.com/pollipayne/farmers-market-front-end](https://g
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-* [Ada Developers Academy]("https://adadevelopersacademy.org/organization/")
-* [USDA Farmers Market API]("https://search.ams.usda.gov/farmersmarkets/v1/svcdesc.html")
-* [UnSplash Images]("https://unsplash.com/license")
+* [Ada Developers Academy](https://adadevelopersacademy.org/organization/)
+* [USDA Farmers Market API](https://search.ams.usda.gov/farmersmarkets/v1/svcdesc.html)
+* [UnSplash Images](https://unsplash.com/license)
 
 
 
