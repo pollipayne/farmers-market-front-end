@@ -67,7 +67,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 <p align="center" >
- <img src="./src/assets/marketpage.png" alt="projectscreenshot" width="500" height="330">
+ <img src="./src/assets/marketpage.png" alt="projectscreenshot" width="500" height="360">
  </p>
 
 Built on top of a RESTful API composed in TypeScript on an Express framework with PSQL and TypeOrm database management.  Users (whether logged in or not) can search for local farmers markets via zip-code query.  Logged in users can add favorited markets to their database, and for each market associate a favorited vendor located within that market.  For each vendor model, users can also assign favorite products, and the season those products are available. 
@@ -77,11 +77,11 @@ Built on top of a RESTful API composed in TypeScript on an Express framework wit
 
 ### Built With
 
-* [TypeScript]("https://www.npmjs.com/package/typescript")
-* [NodeJS]("https://nodejs.org/en/download/")
-* [npm]("https://www.npmjs.com/package/npm")
-* [React]("https://www.npmjs.com/package/react")
-* [Axios]("https://www.npmjs.com/package/axios")
+* [TypeScript]('https://www.npmjs.com/package/typescript')
+* [NodeJS]('https://nodejs.org/en/download/')
+* [npm]('https://www.npmjs.com/package/npm')
+* [React]('https://www.npmjs.com/package/react')
+* [Axios]('https://www.npmjs.com/package/axios')
 
 
 
@@ -92,13 +92,13 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+* For macOS Mojave or later: Click <a href="https://nodejs.org/dist/v14.17.5/node-v14.17.5.pkg">HERE </a> to download the latest NodeJS for macOS. 
+* For Windows 10 x64 or later: Click <a href="https://nodejs.org/dist/v14.17.5/node-v14.17.5-x86.msi">HERE </a> to download the latest NodeJS for Windows. 
+  
+* In your terminal or chosen shell - install npm
   ```sh
   npm install -g npm
   ```
-
-* NodeJS - download <a href="https://nodejs.org/en/download/">HERE </a>
 
 
 
